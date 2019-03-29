@@ -1,0 +1,21 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Permiso
+                </div>
+
+                <div class="panel-body">
+                    {{ Form::model($permission, ['route' => ['permissions.update', $permission->id], 'method' => 'PUT']) }}
+                        @include('permissions.partials.form')
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
