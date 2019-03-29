@@ -52,7 +52,7 @@ class ClientController extends Controller
     public function show($id)
     {
         $client = Client::find($id);
-        
+
         return view('clients.show', compact('client'));
     }
 
@@ -64,7 +64,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::find($id);
+
+        return view('clients.edit', compact('client'));
     }
 
     /**
@@ -74,9 +76,12 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Client $client)
     {
-        //
+        
+        $client->update($request->all());
+
+        return redirect()->route('clients.index')->with('info', 'Cliente Actualizado con exito');
     }
 
     /**

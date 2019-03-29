@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     Clientes
                     @can('products.create')
-                        <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+                        <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary pull-right">Agregar</a>
                     @endcan
                 </div>
 
@@ -16,23 +16,23 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th width="10px">ID</th>
-                                <th>Nombre</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th colspan="3">&nbsp;</th>
+                                <th class="text-center" width="10px">ID</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Teléfono</th>
+                                <th class="text-center">Dirección</th>
+                                <th colspan="3" class="text-center">Aciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($clients as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->address }}</td>
+                                    <td class="text-center">{{ $item->name }}</td>
+                                    <td class="text-center">{{ $item->phone }}</td>
+                                    <td class="text-center">{{ $item->address }}</td>
                                     <td width="10px">
                                         @can('clients.show')
-                                            <a href="{{ route('clients.show', $item->id) }}" class="btn btn-sm btn-default">Ver</a>
+                                            <a href="{{ route('clients.show', $item->id) }}" class="btn btn-sm btn-info">Ver</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
