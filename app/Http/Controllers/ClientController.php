@@ -78,7 +78,6 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        
         $client->update($request->all());
 
         return redirect()->route('clients.index')->with('info', 'Cliente Actualizado con exito');
@@ -90,8 +89,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        //
+        $product->delete();
+
+        return back()->with('info', 'Eliminado correctamente');
     }
 }

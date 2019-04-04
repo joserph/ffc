@@ -32,18 +32,18 @@
                                     <td class="text-center">{{ $item->address }}</td>
                                     <td width="10px">
                                         @can('clients.show')
-                                            <a href="{{ route('clients.show', $item->id) }}" class="btn btn-sm btn-info">Ver</a>
+                                            <a href="{{ route('clients.show', $item->id) }}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('clients.edit')
-                                            <a href="{{ route('clients.edit', $item->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="{{ route('clients.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('clients.destroy')
                                             {!! Form::open(['route' => ['clients.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             {!! Form::close() !!}
                                         @endcan
                                     </td>
