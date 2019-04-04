@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     Clientes
                     @can('products.create')
-                        <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary pull-right">Agregar</a>
+                        <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary pull-right"><i class="fas fa-plus-square"></i> Agregar</a>
                     @endcan
                 </div>
 

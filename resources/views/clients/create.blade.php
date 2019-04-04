@@ -14,7 +14,7 @@
                         @include('clients.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+                                {{ Form::submit('Agregar', ['class' => 'btn btn-sm btn-primary']) }}
                             </div>
                         </div>
                     {{ Form::close() }}
