@@ -6,8 +6,13 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Cliente
+                    <i class="fas fa-eye"></i> Cliente "{{ $client->name }}"
                 </div>
+                <ol class="breadcrumb">
+                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ route('clients.index') }}">Clientes</a></li>
+                    <li class="active">{{ $client->name }}</li>
+                </ol>
 
                 <div class="panel-body">
                     <dl class="dl-horizontal">

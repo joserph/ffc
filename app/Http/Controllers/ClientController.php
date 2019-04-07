@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Http\Requests;
+use App\Http\Requests\AddClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientController extends Controller
 {
@@ -35,7 +38,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddClientRequest $request)
     {
         $client = Client::create($request->all());
 
@@ -76,8 +79,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(UpdateClientRequest $request, $id)
     {
+        $client = Client::find($id);
         $client->update($request->all());
 
         return redirect()->route('clients.index')->with('info', 'Cliente Actualizado con exito');
