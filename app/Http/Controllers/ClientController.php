@@ -42,7 +42,7 @@ class ClientController extends Controller
     {
         $client = Client::create($request->all());
 
-        return redirect()->route('clients.index', $client->id)
+        return redirect()->route('clients.index')
             ->with('info', 'Cliente Guardado con exito');
     }
 

@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Load extends Model
 {
-    protected $table = 'clients';
+    protected $table = 'loads';
 
     protected $fillable = [
-        'name', 'phone', 'address', 'parish', 'city', 'country', 'id_user', 'update_user'
+        'name', 'code', 'date', 'id_user', 'update_user'
     ];
 
     public function user()

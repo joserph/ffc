@@ -29,6 +29,7 @@
                         <li class="active">Editar {{ $client->name }}</li>
                     </ol>
                     {{ Form::model($client, ['route' => ['clients.update', $client->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+                        {!! Form::hidden('update_user', \Auth::user()->id) !!}
                         @include('clients.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">

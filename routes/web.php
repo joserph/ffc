@@ -103,4 +103,26 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('permissions/{permission}/edit', 'PermissionController@edit')->name('permissions.edit')
         ->middleware('permission:permissions.edit');
+
+        // Loads
+    Route::post('loads/store', 'LoadController@store')->name('loads.store')
+    ->middleware('permission:loads.create');
+
+    Route::get('loads', 'LoadController@index')->name('loads.index')
+        ->middleware('permission:loads.index');
+
+    Route::get('loads/create', 'LoadController@create')->name('loads.create')
+        ->middleware('permission:loads.create');
+
+    Route::put('loads/{load}', 'LoadController@update')->name('loads.update')
+        ->middleware('permission:loads.edit');
+
+    Route::get('loads/{load}', 'LoadController@show')->name('loads.show')
+        ->middleware('permission:loads.show');
+
+    Route::delete('loads/{load}', 'LoadController@destroy')->name('loads.destroy')
+        ->middleware('permission:loads.destroy');
+
+    Route::get('loads/{load}/edit', 'LoadController@edit')->name('loads.edit')
+        ->middleware('permission:loads.edit');
 });
