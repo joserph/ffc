@@ -25,9 +25,9 @@ class AddClientRequest extends FormRequest
     {
         return [
             'name'      => 'required|unique:clients,name',
-            'phone'     => 'required',
-            'address'   => 'required',
-            'parish'    => 'required',
+            'phone'     => '',
+            'address'   => '',
+            'parish'    => '',
             'city'      => 'required',
             'country'   => 'required'
         ];

@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Load', 'id_user');
     }
+
+    public function farms()
+    {
+        return $this->hasMany('App\Farm', 'id_user');
+    }
 }

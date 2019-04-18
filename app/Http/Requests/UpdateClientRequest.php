@@ -25,9 +25,9 @@ class UpdateClientRequest extends FormRequest
     {
         return [
             'name'      => 'required|unique:clients,name,' . $this->client,
-            'phone'     => 'required',
-            'address'   => 'required',
-            'parish'    => 'required',
+            'phone'     => '',
+            'address'   => '',
+            'parish'    => '',
             'city'      => 'required',
             'country'   => 'required'
         ];
