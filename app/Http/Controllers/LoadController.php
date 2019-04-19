@@ -54,7 +54,9 @@ class LoadController extends Controller
      */
     public function show($id)
     {
-        //
+        $load = Load::find($id);
+
+        return view('loads.show', compact('load'));
     }
 
     /**

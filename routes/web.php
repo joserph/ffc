@@ -104,7 +104,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('permissions/{permission}/edit', 'PermissionController@edit')->name('permissions.edit')
         ->middleware('permission:permissions.edit');
 
-        // Loads
+    // Loads
     Route::post('loads/store', 'LoadController@store')->name('loads.store')
     ->middleware('permission:loads.create');
 
@@ -125,4 +125,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('loads/{load}/edit', 'LoadController@edit')->name('loads.edit')
         ->middleware('permission:loads.edit');
+
+    // Farms
+    Route::post('farms/store', 'FarmController@store')->name('farms.store')
+    ->middleware('permission:farms.create');
+
+    Route::get('farms', 'FarmController@index')->name('farms.index')
+        ->middleware('permission:farms.index');
+
+    Route::get('farms/create', 'FarmController@create')->name('farms.create')
+        ->middleware('permission:farms.create');
+
+    Route::put('farms/{farm}', 'FarmController@update')->name('farms.update')
+        ->middleware('permission:farms.edit');
+
+    Route::get('farms/{farm}', 'FarmController@show')->name('farms.show')
+        ->middleware('permission:farms.show');
+
+    Route::delete('farms/{farm}', 'FarmController@destroy')->name('farms.destroy')
+        ->middleware('permission:farms.destroy');
+
+    Route::get('farms/{farm}/edit', 'FarmController@edit')->name('farms.edit')
+        ->middleware('permission:farms.edit');
+        
 });

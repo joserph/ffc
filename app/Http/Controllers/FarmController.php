@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Farm;
 
 class FarmController extends Controller
 {
@@ -13,7 +14,9 @@ class FarmController extends Controller
      */
     public function index()
     {
-        //
+        $farms = Farm::paginate();
+
+        return view('farms.index', compact('farms'));
     }
 
     /**
