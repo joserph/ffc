@@ -147,5 +147,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('farms/{farm}/edit', 'FarmController@edit')->name('farms.edit')
         ->middleware('permission:farms.edit');
+
+    // Pallets
+    Route::post('pallets/store', 'PalletController@store')->name('pallets.store')
+    ->middleware('permission:pallets.create');
+
+    Route::get('pallets', 'PalletController@index')->name('pallets.index')
+        ->middleware('permission:pallets.index');
+
+    Route::get('pallets/create', 'PalletController@create')->name('pallets.create')
+        ->middleware('permission:pallets.create');
+
+    Route::put('pallets/{pallet}', 'PalletController@update')->name('pallets.update')
+        ->middleware('permission:pallets.edit');
+
+    Route::get('pallets/{pallet}', 'PalletController@show')->name('pallets.show')
+        ->middleware('permission:pallets.show');
+
+    Route::delete('pallets/{pallet}', 'PalletController@destroy')->name('pallets.destroy')
+        ->middleware('permission:pallets.destroy');
+
+    Route::get('pallets/{pallet}/edit', 'PalletController@edit')->name('pallets.edit')
+        ->middleware('permission:pallets.edit');
         
 });

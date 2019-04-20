@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Farm', 'id_user');
     }
+
+    public function pallets()
+    {
+        return $this->hasMany('App\Pallet', 'id_user');
+    }
 }
