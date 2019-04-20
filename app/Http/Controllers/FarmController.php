@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Farm;
 use App\Http\Requests\AddFarmRequest;
+use App\Http\Requests\UpdateFarmRequest;
 
 class FarmController extends Controller
 {
@@ -65,7 +66,9 @@ class FarmController extends Controller
      */
     public function edit($id)
     {
-        
+        $farm = Farm::find($id);
+
+        return view('farms.edit', compact('farm'));
     }
 
     /**
@@ -75,9 +78,12 @@ class FarmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateFarmRequest $request, $id)
     {
-        //
+        $farm = Farm::find($id);
+        $farm->update($request->all());
+
+        return redirect()->route('farms.index')->with('info', 'Finca Actualizada con exito');
     }
 
     /**
@@ -88,6 +94,9 @@ class FarmController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $farm = Farm::find($id);
+        $farm->delete();
+
+        return back()->with('info', 'Eliminado correctamente');
     }
 }

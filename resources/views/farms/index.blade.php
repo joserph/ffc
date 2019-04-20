@@ -48,7 +48,7 @@
                                         <td width="10px">
                                             @can('farms.destroy')
                                                 {!! Form::open(['route' => ['farms.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar cliente?")']) !!}
+                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         </td>
