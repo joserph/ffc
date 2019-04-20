@@ -14,7 +14,7 @@
 
                 <div class="panel-body">
                     <ol class="breadcrumb">
-                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Inicio</a></li>
                         <li class="active">Contenedores</li>
                     </ol>
                     <div class="table-responsive">

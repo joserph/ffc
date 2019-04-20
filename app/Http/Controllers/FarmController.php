@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Farm;
+use App\Http\Requests\AddFarmRequest;
 
 class FarmController extends Controller
 {
@@ -26,7 +27,7 @@ class FarmController extends Controller
      */
     public function create()
     {
-        //
+        return view('farms.create');
     }
 
     /**
@@ -35,9 +36,12 @@ class FarmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddFarmRequest $request)
     {
-        //
+        $farm = Farm::create($request->all());
+
+        return redirect()->route('farms.index')
+            ->with('info', 'Finca Guardada con exito');
     }
 
     /**
@@ -48,7 +52,9 @@ class FarmController extends Controller
      */
     public function show($id)
     {
-        //
+        $farm = Farm::find($id);
+
+        return view('farms.show', compact('farm'));
     }
 
     /**
@@ -59,7 +65,7 @@ class FarmController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

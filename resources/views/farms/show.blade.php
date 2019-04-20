@@ -6,28 +6,28 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fas fa-eye"></i> Cliente "{{ $client->name }}"
+                    <i class="fas fa-eye"></i> Finca "{{ $farm->name }}"
                 </div>
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Inicio</a></li>
-                    <li><a href="{{ route('clients.index') }}">Clientes</a></li>
-                    <li class="active">{{ $client->name }}</li>
+                    <li><a href="{{ route('farms.index') }}">Fincas</a></li>
+                    <li class="active">{{ $farm->name }}</li>
                 </ol>
 
                 <div class="panel-body">
                     <dl class="dl-horizontal">
                         <dt>Nombre:</dt>
-                        <dd>{{ $client->name }}</dd>
+                        <dd>{{ $farm->name }}</dd>
                         <dt>Teléfono:</dt>
-                        <dd>{{ $client->phone }}</dd>
+                        <dd>{{ $farm->phone }}</dd>
                         <dt>Dirección:</dt>
-                        <dd>{{ $client->address }}</dd>
+                        <dd>{{ $farm->address }}</dd>
                         <dt>Parroquia:</dt>
-                        <dd>{{ $client->parish }}</dd>
+                        <dd>{{ $farm->parish }}</dd>
                         <dt>Ciudad:</dt>
-                        <dd>{{ $client->city }}</dd>
+                        <dd>{{ $farm->city }}</dd>
                         <dt>País:</dt>
-                        <dd>{{ $client->country }}</dd>
+                        <dd>{{ $farm->country }}</dd>
                     </dl>
                 </div>
             </div>

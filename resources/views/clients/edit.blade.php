@@ -24,7 +24,7 @@
                         </div>
                     @endif
                     <ol class="breadcrumb">
-                        <li><a href="{{ url('/home') }}">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Inicio</a></li>
                         <li><a href="{{ route('clients.index') }}">Clientes</a></li>
                         <li class="active">Editar {{ $client->name }}</li>
                     </ol>

@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fas fa-plus-circle"></i> Agregar Cliente
+                    <i class="fas fa-plus-circle"></i> Agregar Finca
                 </div>
                 
                 <div class="panel-body">
@@ -25,13 +25,13 @@
                     @endif
                     <ol class="breadcrumb">
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
-                        <li><a href="{{ route('clients.index') }}">Clientes</a></li>
-                        <li class="active">Agregar Cliente</li>
+                        <li><a href="{{ route('farms.index') }}">Fincas</a></li>
+                        <li class="active">Agregar Finca</li>
                     </ol>
-                    {{ Form::open(['route' => 'clients.store', 'class' => 'form-horizontal']) }}
+                    {{ Form::open(['route' => 'farms.store', 'class' => 'form-horizontal']) }}
                         {!! Form::hidden('id_user', \Auth::user()->id) !!}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
-                        @include('clients.partials.form')
+                        @include('farms.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Agregar</button>

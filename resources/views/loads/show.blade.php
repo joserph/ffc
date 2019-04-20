@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
             <ol class="breadcrumb">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/home') }}">Inicio</a></li>
                     <li><a href="{{ route('loads.index') }}">Contenedores</a></li>
                     <li class="active">Paletas</li>
                 </ol>
