@@ -8,8 +8,26 @@
                 <div class="panel-heading">
                     <i class="fas fa-spa"></i> Paletas
                     @can('products.create')
-                        <a href="{{ route('pallets.create') }}" class="btn btn-sm btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevas fincas"><i class="fas fa-plus-circle"></i> Agregar</a>
+                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                     @endcan
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                @include('pallets.create')
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="panel-body">
