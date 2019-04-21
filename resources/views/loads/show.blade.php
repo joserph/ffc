@@ -5,7 +5,7 @@
     <div class="row">
             <ol class="breadcrumb">
                     <li><a href="{{ url('/home') }}">Inicio</a></li>
-                    <li><a href="{{ route('loads.index') }}">Contenedores</a></li>
+                    <li><a href="{{ route('loads.index') }}">Contenedor {{ $load->code }}</a></li>
                     <li class="active">Paletas</li>
                 </ol>
         <div class="col-md-4">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('pallets.index') }}" data-toggle="tooltip" data-placement="bottom" title="Distribución de pallets">
+                <a href="{{ route('pallets.index', $load->code) }}" data-toggle="tooltip" data-placement="bottom" title="Distribución de pallets">
                     <div class="panel-footer">
                         <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

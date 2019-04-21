@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pallet;
+use App\Http\Requests\AddPalletRequest;
 
 class PalletController extends Controller
 {
@@ -14,9 +15,12 @@ class PalletController extends Controller
      */
     public function index()
     {
+        $url= $_SERVER["REQUEST_URI"];
+        $div = explode("?", $url);
+        $code = $div[1];
         $pallets = Pallet::paginate();
 
-        return view('pallets.index', compact('pallets'));
+        return view('pallets.index', compact('pallets','code'));
     }
 
     /**
@@ -35,9 +39,12 @@ class PalletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddPalletRequest $request)
     {
-        //
+        $pallet = Pallet::create($request->all());
+
+        return redirect()->route('pallets.index')
+            ->with('info', 'Paleta Guardada con exito');
     }
 
     /**
