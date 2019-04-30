@@ -19,10 +19,11 @@ class CreatePalletsTable extends Migration
             $table->string('counter');
             $table->string('number');
             $table->integer('quantity')->nullable();
-            $table->integer('id_load');
+            $table->integer('id_load')->unsigned();
             $table->integer('id_user')->unsigned();            
             $table->integer('update_user')->nullable();
             
+            $table->foreign('id_load')->references('id')->on('loads')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users');
 
             $table->timestamps();

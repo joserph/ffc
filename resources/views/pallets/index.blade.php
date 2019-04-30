@@ -91,7 +91,7 @@
                 {{ Form::open(['route' => 'pallets.store', 'class' => 'form-horizontal']) }}
                     {!! Form::hidden('id_user', \Auth::user()->id) !!}
                     {!! Form::hidden('update_user', \Auth::user()->id) !!}
-                    {!! Form::hidden('id_load',$code) !!}
+                    {!! Form::hidden('id_load', $load) !!}
                     <div class="form-group">
                         {{ Form::label('number', 'Número', ['class' => 'col-sm-2 control-label']) }}
                         <div class="col-sm-4">

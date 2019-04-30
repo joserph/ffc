@@ -16,4 +16,9 @@ class Load extends Model
     {
         return $this->belongsTo('App\User', 'id_user');
     }
+
+    public function pallets()
+    {
+        return $this->hasMany('App\Pallet', 'id_load');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pallet;
+use App\Load;
 use App\Http\Requests\AddPalletRequest;
 
 class PalletController extends Controller
@@ -19,7 +20,10 @@ class PalletController extends Controller
         $div = explode("?", $url);
         $code = $div[1];
         $pallets = Pallet::paginate();
-        $last_pallet = Pallet::where('id_load', '=', $code)->select('counter')->get()->last();
+        
+        $load_code = Load::where('code', '=', $code)->get();
+        $load = $load_code[0]->id;
+        $last_pallet = Pallet::where('id_load', '=', $load)->select('counter')->get()->last();
         
         if($last_pallet)
         {
@@ -28,8 +32,8 @@ class PalletController extends Controller
             $counter = 1;
         }
         $number = $code . '-' . $counter;
-
-        return view('pallets.index', compact('pallets','code', 'counter', 'number'));
+        //dd($number);
+        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load'));
     }
 
     /**
@@ -51,8 +55,9 @@ class PalletController extends Controller
     public function store(AddPalletRequest $request)
     {
         $pallet = Pallet::create($request->all());
-        
-        return redirect()->route('pallets.index', $pallet->id_load)
+        $load = Load::where('id', '=', $pallet->id_load)->get();
+
+        return redirect()->route('pallets.index', $load[0]->code)
             ->with('info', 'Paleta Guardada con exito');
     }
 
