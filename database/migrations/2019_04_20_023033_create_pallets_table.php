@@ -16,8 +16,10 @@ class CreatePalletsTable extends Migration
         Schema::create('pallets', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('counter');
             $table->string('number');
-            $table->integer('quantity');
+            $table->integer('quantity')->nullable();
+            $table->integer('id_load');
             $table->integer('id_user')->unsigned();            
             $table->integer('update_user')->nullable();
             

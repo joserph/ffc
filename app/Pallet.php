@@ -9,7 +9,7 @@ class Pallet extends Model
     protected $table = 'pallets';
 
     protected $fillable = [
-        'number', 'quantity', 'id_user', 'update_user'
+        'counter', 'number', 'quantity', 'id_load', 'id_user', 'update_user'
     ];
 
     public function user()
