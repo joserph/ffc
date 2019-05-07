@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePalletItemsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('pallet_items', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->integer('id_farm')->unsigned();
+            $table->integer('id_client')->unsigned();
+            $table->integer('id_pallet')->unsigned();
+            $table->integer('quantity')->nullable();
+            $table->integer('id_user')->unsigned();            
+            $table->integer('update_user')->nullable();
+
+            $table->foreign('id_farm')->references('id')->on('farms')->onDelete('cascade');
+            $table->foreign('id_client')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('id_pallet')->references('id')->on('pallets')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('pallet_items');
+    }
+}

@@ -17,5 +17,8 @@ class Pallet extends Model
         return $this->belongsTo('App\User', 'id_user');
     }
 
-    
+    public function palletitems()
+    {
+        return $this->hasMany('App\PalletItem', 'id_pallet');
+    }
 }
