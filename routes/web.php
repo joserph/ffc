@@ -169,5 +169,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('pallets/{pallet}/edit', 'PalletController@edit')->name('pallets.edit')
         ->middleware('permission:pallets.edit');
+
+    // PalletItem
+    Route::post('palletitems/store', 'PalletItemController@store')->name('palletitems.store')
+    ->middleware('permission:palletitems.create');
+
+    Route::get('palletitems', 'PalletItemController@index')->name('palletitems.index')
+        ->middleware('permission:palletitems.index');
+
+    Route::get('palletitems/create/{palletitem}', 'PalletItemController@create')->name('palletitems.create')
+        ->middleware('permission:palletitems.create');
+
+    Route::put('palletitems/{palletitem}', 'PalletItemController@update')->name('palletitems.update')
+        ->middleware('permission:palletitems.edit');
+
+    Route::get('palletitems/{palletitem}', 'PalletItemController@show')->name('palletitems.show')
+        ->middleware('permission:palletitems.show');
+
+    Route::delete('palletitems/{palletitem}', 'PalletItemController@destroy')->name('palletitems.destroy')
+        ->middleware('permission:palletitems.destroy');
+
+    Route::get('palletitems/{palletitem}/edit', 'PalletItemController@edit')->name('palletitems.edit')
+        ->middleware('permission:palletitems.edit');
         
 });

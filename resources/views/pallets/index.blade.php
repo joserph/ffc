@@ -17,11 +17,16 @@
                         <li class="active">Fincas</li>
                     </ol>
                     
-                    @foreach ($pallets as $item)
+                    @foreach ($pallets as $indexKey =>$item)
                         <div class="panel panel-success">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Paleta # {{ $item->number }}</h3>
+                                <i class="fas fa-pallet"></i> Paleta # {{ $item->number }}
+                                <input type="hidden" name="prueba" id="prueba_{{ $indexKey }}" value="{{ $item->number }}">
+                                @can('products.create')
+                                    <a href="{{ route('palletitems.create', $item->number) }}" class="btn btn-sm btn-info pull-right"><i class="fas fa-plus-circle"></i> Agregar</a>
+                                @endcan
                             </div>
+                            
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
@@ -65,7 +70,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Pallets -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -116,4 +121,8 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection
+
