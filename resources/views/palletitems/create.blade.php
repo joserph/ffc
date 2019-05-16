@@ -28,10 +28,10 @@
                         <li><a href="{{ route('loads.index') }}">Contenedores</a></li>
                         <li class="active">Agregar Contenedor</li>
                     </ol>
-                    {{ Form::open(['route' => 'loads.store', 'class' => 'form-horizontal']) }}
+                    {{ Form::open(['route' => 'palletitems.store', 'class' => 'form-horizontal']) }}
                         {!! Form::hidden('id_user', \Auth::user()->id) !!}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
-                        @include('loads.partials.form')
+                        @include('palletitems.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Agregar</button>

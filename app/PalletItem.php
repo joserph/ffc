@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PalletItem extends Model
 {
-    protected $table = 'loads';
+    protected $table = 'pallet_items';
 
     protected $fillable = [
         'id_farm', 'id_client', 'id_pallet', 'quantity', 'id_user', 'update_user'

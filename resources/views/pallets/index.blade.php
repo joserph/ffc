@@ -32,23 +32,23 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center" width="10px">ID</th>
-                                                <th class="text-center">Nombre</th>
-                                                <th class="text-center">Teléfono</th>
-                                                <th class="text-center">Dirección</th>
+                                                <th class="text-center">Finca</th>
+                                                <th class="text-center">Cliente</th>
+                                                <th class="text-center">Cantidad</th>
                                                 <th colspan="3" class="text-center">Aciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                            </tr>
+                                            @foreach ($palletItem as $item2)
+                                                @if($item->id == $item2->id_pallet)
+                                                    <tr>
+                                                        <td class="text-center">{{ $item2->id_farm }}</td>
+                                                        <td class="text-center">{{ $item2->id_client }}</td>
+                                                        <td class="text-center">{{ $item2->quantity }}</td>
+                                                        <td class="text-center"></td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pallet;
 use App\Load;
 use App\Http\Requests\AddPalletRequest;
+use App\PalletItem;
 
 class PalletController extends Controller
 {
@@ -32,8 +33,9 @@ class PalletController extends Controller
             $counter = 1;
         }
         $number = $code . '-' . $counter;
-        //dd($number);
-        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load'));
+        $palletItem = PalletItem::all();
+        //dd($palletItem);
+        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem'));
     }
 
     /**

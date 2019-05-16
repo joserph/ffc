@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Farm;
+use App\Client;
+use App\Pallet;
+use App\PalletItem;
+use App\Http\Requests\AddPalletItemRequest;
+use App\Load;
 
 class PalletItemController extends Controller
 {
@@ -24,7 +30,12 @@ class PalletItemController extends Controller
     public function create($id)
     {
         $palletitem = $id;
-        return view('palletitems.create', compact('palletitem'));
+        $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
+        $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
+        $pallets = Pallet::select('id')->where('number', '=', $id)->get();
+        $id_pallet = $pallets[0]->id;
+        //dd($id_pallet);
+        return view('palletitems.create', compact('palletitem', 'farms', 'clients', 'id_pallet'));
     }
 
     /**
@@ -33,9 +44,14 @@ class PalletItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddPalletItemRequest $request)
     {
-        //
+        $palletItem = PalletItem::create($request->all());
+        $pallet = Pallet::where('id', '=', $palletItem->id_pallet)->get();
+        $load = Load::where('id', '=', $pallet[0]->id_load)->get();
+        //dd($load);
+        return redirect()->route('pallets.index', $load[0]->code)
+            ->with('info', 'Item Guardado con exito');
     }
 
     /**
