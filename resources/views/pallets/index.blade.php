@@ -42,10 +42,24 @@
                                             @foreach ($palletItem as $item2)
                                                 @if($item->id == $item2->id_pallet)
                                                     <tr>
-                                                        <td class="text-center">{{ $item2->id_farm }}</td>
-                                                        <td class="text-center">{{ $item2->id_client }}</td>
+                                                        <td class="text-center">
+                                                            @foreach ($farms as $farm)
+                                                                @if($item2->id_farm == $farm->id)
+                                                                    {{ $farm->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td class="text-center">
+                                                            @foreach ($clients as $client)
+                                                                @if($item2->id_client == $client->id)
+                                                                    {{ $client->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
                                                         <td class="text-center">{{ $item2->quantity }}</td>
-                                                        <td class="text-center"></td>
+                                                        <td class="text-center">
+                                                            <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                        </td>
                                                     </tr>
                                                 @endif
                                             @endforeach

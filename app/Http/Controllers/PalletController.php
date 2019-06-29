@@ -7,6 +7,8 @@ use App\Pallet;
 use App\Load;
 use App\Http\Requests\AddPalletRequest;
 use App\PalletItem;
+use App\Farm;
+use App\Client;
 
 class PalletController extends Controller
 {
@@ -34,8 +36,12 @@ class PalletController extends Controller
         }
         $number = $code . '-' . $counter;
         $palletItem = PalletItem::all();
-        //dd($palletItem);
-        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem'));
+        // Farms
+        $farms = Farm::all();
+        // Clients
+        $clients = Client::all();
+        //dd($farms);
+        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients'));
     }
 
     /**
@@ -71,7 +77,7 @@ class PalletController extends Controller
      */
     public function show($id)
     {
-        //
+        // pdf o csv
     }
 
     /**

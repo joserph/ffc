@@ -33,9 +33,15 @@ class PalletItemController extends Controller
         $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
         $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
         $pallets = Pallet::select('id')->where('number', '=', $id)->get();
-        $id_pallet = $pallets[0]->id;
-        //dd($id_pallet);
-        return view('palletitems.create', compact('palletitem', 'farms', 'clients', 'id_pallet'));
+        $id_pallet = $pallets[0]->id; 
+
+        // Breadcrums
+        $load = Pallet::select('id_load')->where('number', '=', $id)->get();
+        $loads = Load::select('code')->where('id', '=', $load[0]->id_load)->get();
+        $id_load = $loads[0]->code;
+        
+        //dd($id_load);
+        return view('palletitems.create', compact('palletitem', 'farms', 'clients', 'id_pallet', 'id_load'));
     }
 
     /**
@@ -62,7 +68,7 @@ class PalletItemController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -73,7 +79,25 @@ class PalletItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $palletitemsCode = PalletItem::select('id_pallet')->where('id', '=', $id)->get();
+        $pallets = Pallet::select('number')->where('id', '=', $palletitemsCode[0]->id_pallet)->get();
+        $palletitem = $pallets[0]->number;
+
+        // Breadcrums
+        $load = Pallet::select('id_load')->where('number', '=', $palletitem)->get();
+        $loads = Load::select('code')->where('id', '=', $load[0]->id_load)->get();
+        $id_load = $loads[0]->code;
+
+        $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
+        $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
+
+        $pallet = Pallet::select('id')->where('id', '=', $palletitemsCode[0]->id_pallet)->get();
+        $id_pallet = $pallet[0]->id;
+
+        $palletitems = PalletItem::find($id);
+
+        //dd($palletitems);
+        return view('palletitems.edit', compact('palletitem', 'id_load', 'farms', 'clients', 'id_pallet', 'palletitems'));
     }
 
     /**

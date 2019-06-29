@@ -29,13 +29,12 @@
                         <li><a href="{{ route('pallets.index', $id_load) }}">Paletas</a></li>
                         <li class="active">Agregar Contenedor</li>
                     </ol>
-                    {{ Form::open(['route' => 'palletitems.store', 'class' => 'form-horizontal']) }}
-                        {!! Form::hidden('id_user', \Auth::user()->id) !!}
+                    {{ Form::model($palletitems, ['route' => ['palletitems.update', $palletitems->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
                         @include('palletitems.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Agregar</button>
+                                <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i> Actualizar</button>
                             </div>
                         </div>
                     {{ Form::close() }}
