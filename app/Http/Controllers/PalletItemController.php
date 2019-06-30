@@ -107,9 +107,18 @@ class PalletItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AddPalletItemRequest $request, $id)
     {
-        //
+        $palletitem = PalletItem::find($id);
+        $palletitem->update($request->all());
+
+        $palletitemsCode = PalletItem::select('id_pallet')->where('id', '=', $id)->get();
+        $pallets = Pallet::select('id_load')->where('id', '=', $palletitemsCode[0]->id_pallet)->get();  
+        $load = Load::select('code')->where('id', '=', $pallets[0]->id_load)->get(); 
+        
+
+        return redirect()->route('pallets.index', $load[0]->code)
+            ->with('edit', 'Item Actualizado con exito');
     }
 
     /**
