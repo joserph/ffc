@@ -35,7 +35,7 @@
                                                 <th class="text-center">Finca</th>
                                                 <th class="text-center">Cliente</th>
                                                 <th class="text-center">Cantidad</th>
-                                                <th colspan="3" class="text-center">Aciones</th>
+                                                <th colspan="2" class="text-center">Aciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -57,8 +57,13 @@
                                                             @endforeach
                                                         </td>
                                                         <td class="text-center">{{ $item2->quantity }}</td>
-                                                        <td class="text-center">
+                                                        <td class="text-center" width="10px">
                                                             <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                        </td>
+                                                        <td class="text-center" width="10px">
+                                                            {!! Form::open(['route' => ['palletitems.destroy', $item2->id], 'method' => 'DELETE']) !!}
+                                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                            {!! Form::close() !!}
                                                         </td>
                                                     </tr>
                                                 @endif
@@ -135,8 +140,5 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
 
