@@ -34,7 +34,7 @@
                         @include('palletitems.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i> Actualizar</button>
+                                <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-sync-alt"></i> Actualizar</button>
                             </div>
                         </div>
                     {{ Form::close() }}

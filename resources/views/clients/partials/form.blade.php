@@ -96,7 +96,7 @@
             'Emiratos Árabes Unidos' => 'Emiratos Árabes Unidos',
             'Eritrea' => 'Eritrea',
             'Eslovenia' => 'Eslovenia',
-            'selected>España' => 'selected>España',
+            'España' => 'España',
             'Estados Unidos' => 'Estados Unidos',
             'Estonia' => 'Estonia',
             'Etiopía' => 'Etiopía',

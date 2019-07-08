@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fas fa-spa"></i> Paletas
+                    <i class="fas fa-pallet"></i> Paletas
                     @can('products.create')
                         <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                     @endcan
@@ -61,8 +61,8 @@
                                                             <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                                         </td>
                                                         <td class="text-center" width="10px">
-                                                            {!! Form::open(['route' => ['palletitems.destroy', $item2->id], 'method' => 'DELETE']) !!}
-                                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                            {!! Form::open(['route' => ['palletitems.destroy', $item2->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar item de paleta?")']) !!}
+                                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                                             {!! Form::close() !!}
                                                         </td>
                                                     </tr>

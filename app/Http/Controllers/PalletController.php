@@ -111,6 +111,9 @@ class PalletController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pallet = Pallet::find($id);
+        $pallet->delete();
+
+        return back()->with('danger', 'Paleta Eliminada correctamente');
     }
 }
