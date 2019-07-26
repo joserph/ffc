@@ -85,7 +85,17 @@
                     @endforeach
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <button class="btn btn-primary pull-right" type="button">
+                        Total Contenedor <span class="badge">{{ $total_container }}</span>
+                    </button>
+                </div>
+            </div>
         </div>
+
+
     </div>
 </div>
 

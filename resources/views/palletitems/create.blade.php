@@ -26,12 +26,13 @@
                     <ol class="breadcrumb">
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
                         <li><a href="{{ route('loads.index') }}">Contenedores</a></li>
-                        <li><a href="{{ route('pallets.index', $id_load) }}">Paletas</a></li>
+                        <li><a href="{{ route('pallets.index', $code_load) }}">Paletas</a></li>
                         <li class="active">Agregar Contenedor</li>
                     </ol>
                     {{ Form::open(['route' => 'palletitems.store', 'class' => 'form-horizontal']) }}
                         {!! Form::hidden('id_user', \Auth::user()->id) !!}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
+                        {!! Form::hidden('id_load', $id_load) !!}
                         @include('palletitems.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">

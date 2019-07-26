@@ -28,6 +28,9 @@ class PalletController extends Controller
         $load = $load_code[0]->id;
         $last_pallet = Pallet::where('id_load', '=', $load)->select('counter')->get()->last();
         
+        // Total contenedor
+        $total_container = PalletItem::where('id_load', '=', $load)->sum('quantity');
+        //dd($total_container);
         if($last_pallet)
         {
             $counter = $last_pallet->counter + 1;
@@ -40,8 +43,8 @@ class PalletController extends Controller
         $farms = Farm::all();
         // Clients
         $clients = Client::all();
-        //dd($farms);
-        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients'));
+        
+        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients', 'total_container'));
     }
 
     /**

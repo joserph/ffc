@@ -19,6 +19,7 @@ class CreatePalletItemsTable extends Migration
             $table->integer('id_farm')->unsigned();
             $table->integer('id_client')->unsigned();
             $table->integer('id_pallet')->unsigned();
+            $table->integer('id_load')->unsigned();
             $table->integer('quantity')->nullable();
             $table->integer('id_user')->unsigned();            
             $table->integer('update_user')->nullable();

@@ -37,11 +37,12 @@ class PalletItemController extends Controller
 
         // Breadcrums
         $load = Pallet::select('id_load')->where('number', '=', $id)->get();
-        $loads = Load::select('code')->where('id', '=', $load[0]->id_load)->get();
-        $id_load = $loads[0]->code;
+        $loads = Load::select('code', 'id')->where('id', '=', $load[0]->id_load)->get();
+        $code_load = $loads[0]->code;
+        $id_load = $loads[0]->id;
         
-        //dd($id_load);
-        return view('palletitems.create', compact('palletitem', 'farms', 'clients', 'id_pallet', 'id_load'));
+        //dd($code_load);
+        return view('palletitems.create', compact('palletitem', 'farms', 'clients', 'id_pallet', 'code_load', 'id_load'));
     }
 
     /**

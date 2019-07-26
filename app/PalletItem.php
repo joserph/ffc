@@ -9,7 +9,7 @@ class PalletItem extends Model
     protected $table = 'pallet_items';
 
     protected $fillable = [
-        'id_farm', 'id_client', 'id_pallet', 'quantity', 'id_user', 'update_user'
+        'id_farm', 'id_client', 'id_pallet', 'id_load', 'quantity', 'id_user', 'update_user'
     ];
 
     public function user()
