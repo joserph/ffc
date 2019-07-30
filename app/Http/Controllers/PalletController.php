@@ -30,7 +30,13 @@ class PalletController extends Controller
         
         // Total contenedor
         $total_container = PalletItem::where('id_load', '=', $load)->sum('quantity');
-        //dd($total_container);
+        // Total HB
+        $total_hb = PalletItem::where('id_load', '=', $load)->sum('hb');
+        // Total QB
+        $total_qb = PalletItem::where('id_load', '=', $load)->sum('qb');
+        // Total EB
+        $total_eb = PalletItem::where('id_load', '=', $load)->sum('eb');
+        //dd($total_eb);
         if($last_pallet)
         {
             $counter = $last_pallet->counter + 1;
@@ -44,7 +50,7 @@ class PalletController extends Controller
         // Clients
         $clients = Client::all();
         
-        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients', 'total_container'));
+        return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients', 'total_container', 'total_hb', 'total_qb', 'total_eb'));
     }
 
     /**

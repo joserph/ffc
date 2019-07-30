@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row">
             <ol class="breadcrumb">
-                    <li><a href="{{ url('/home') }}">Inicio</a></li>
-                    <li><a href="{{ route('loads.index') }}">Contenedor {{ $load->code }}</a></li>
-                    <li class="active">Paletas</li>
-                </ol>
+                <li><a href="{{ url('/home') }}">Inicio</a></li>
+                <li><a href="{{ route('loads.index') }}">Contenedor {{ $load->code }}</a></li>
+                <li class="active">Paletas</li>
+            </ol>
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">

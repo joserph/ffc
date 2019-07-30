@@ -113,7 +113,16 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <button class="btn btn-primary pull-right" type="button">
+                    <button class="btn btn-default  " type="button">
+                        Total HB <span class="badge">{{ $total_hb }}</span>
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        Total QB <span class="badge">{{ $total_qb }}</span>
+                    </button>
+                    <button class="btn btn-info" type="button">
+                        Total EB <span class="badge">{{ $total_eb }}</span>
+                    </button>
+                    <button class="btn btn-success" type="button">
                         Total Contenedor <span class="badge">{{ $total_container }}</span>
                     </button>
                 </div>
