@@ -14,7 +14,9 @@
                 <div class="panel-body">
                     <ol class="breadcrumb">
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
-                        <li class="active">Fincas</li>
+                        <li><a href="{{ route('loads.index') }}">Contenedor {{ $code }}</a></li>
+                        <li><a href="{{ route('loads.show', $load) }}">Paletas</a></li>
+                        <li class="active">Items de Paletas</li>
                     </ol>
                     
                     @foreach ($pallets as $indexKey =>$item)
