@@ -191,5 +191,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('palletitems/{palletitem}/edit', 'PalletItemController@edit')->name('palletitems.edit')
         ->middleware('permission:palletitems.edit');
+
+    // Sketches
+    Route::post('sketches/store', 'SketchesController@store')->name('sketches.store')
+    ->middleware('permission:sketches.create');
+
+    Route::get('sketches', 'SketchesController@index')->name('sketches.index')
+        ->middleware('permission:sketches.index');
+
+    Route::get('sketches/create/{palletitem}', 'SketchesController@create')->name('sketches.create')
+        ->middleware('permission:sketches.create');
+
+    Route::put('sketches/{palletitem}', 'SketchesController@update')->name('sketches.update')
+        ->middleware('permission:sketches.edit');
+
+    Route::get('sketches/{palletitem}', 'SketchesController@show')->name('sketches.show')
+        ->middleware('permission:sketches.show');
+
+    Route::delete('sketches/{palletitem}', 'SketchesController@destroy')->name('sketches.destroy')
+        ->middleware('permission:sketches.destroy');
+
+    Route::get('sketches/{palletitem}/edit', 'SketchesController@edit')->name('sketches.edit')
+        ->middleware('permission:sketches.edit');
         
 });

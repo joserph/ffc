@@ -15,6 +15,11 @@ class CreateSketchesTable extends Migration
     {
         Schema::create('sketches', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('id_pallet_items')->unsigned();
+            $table->string('position');
+            $table->foreign('id_pallet_items')->references('id')->on('pallet_items')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
