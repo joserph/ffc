@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('sketches.index') }}" data-toggle="tooltip" data-placement="bottom" title="Distribución de pallets">
+                <a href="{{ route('sketches.index', $load->code) }}" data-toggle="tooltip" data-placement="bottom" title="Distribución de pallets">
                     <div class="panel-footer">
                         <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

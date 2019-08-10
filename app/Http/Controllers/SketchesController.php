@@ -13,6 +13,7 @@ class SketchesController extends Controller
      */
     public function index()
     {
+        
         return view('sketches.index');
     }
 
@@ -34,7 +35,7 @@ class SketchesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
