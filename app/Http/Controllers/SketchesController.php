@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SketchItem;
+use App\Sketch;
+use App\Load;
 
 class SketchesController extends Controller
 {
@@ -13,8 +16,11 @@ class SketchesController extends Controller
      */
     public function index()
     {
-        
-        return view('sketches.index');
+        $url= $_SERVER["REQUEST_URI"];
+        $div = explode("?", $url);
+        $code = $div[1];
+        //dd($code);
+        return view('sketches.index', compact('code'));
     }
 
     /**
@@ -35,7 +41,24 @@ class SketchesController extends Controller
      */
     public function store(Request $request)
     {
+        /*$sketchItem = new SketchItem($request->all());
+        $sketchItem->id_pallet = 11;
+        $sketchItem->number = 22;
+        $sketchItem->number_pallet = 22;
+        $sketchItem->code = 22;
+        $sketchItem->position = 'a';
+        $sketchItem->save();*/
+        $id_load = Load::select('id')->where('code', '=', $request->code)->get();
         
+        $sketch = new Sketch();
+        $sketch->id_load = $id_load[0]->id;
+        $sketch->position = 2;
+        $sketch->save();
+
+        //dd($id_load[0]->id);
+
+        return redirect()->route('sketches.index', $request->code)
+            ->with('info', 'Item Guardado con exito');
     }
 
     /**

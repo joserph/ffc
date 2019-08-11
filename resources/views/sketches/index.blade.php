@@ -10,8 +10,8 @@
                 </div>
                 <div class="panel-body">
                     @can('sketches.create')
-                        {{ Form::open(['route' => 'palletitems.store']) }}
-                            
+                        {{ Form::open(['route' => 'sketches.store']) }}
+                            {!! Form::hidden('code', $code) !!}
                             <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Generar espacios</button>
                         {{ Form::close() }}
                     @endcan
