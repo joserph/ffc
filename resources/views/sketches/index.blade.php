@@ -9,10 +9,11 @@
                     <i class="fas fa-map-marked-alt"></i> Croquis Contenedor
                 </div>
                 <div class="panel-body">
+                    
                     @can('sketches.create')
                         {{ Form::open(['route' => 'sketches.store']) }}
                             {!! Form::hidden('code', $code) !!}
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Generar espacios</button>
+                            <button type="submit" class="btn btn-sm btn-primary" @if($space == 1) disabled @endif><i class="fas fa-plus-circle"></i> Generar espacios</button>
                         {{ Form::close() }}
                     @endcan
                     <hr>

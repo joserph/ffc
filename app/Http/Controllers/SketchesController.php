@@ -19,8 +19,18 @@ class SketchesController extends Controller
         $url= $_SERVER["REQUEST_URI"];
         $div = explode("?", $url);
         $code = $div[1];
-        //dd($code);
-        return view('sketches.index', compact('code'));
+        // Verificar espacios
+        $load = Load::select('id')->where('code', '=', $code)->get();
+        $id_load = $load[0]->id;
+        $position24 = Sketch::where('id_load', '=', $id_load)->where('position', '=', '24')->get()->last();
+        if($position24)
+        {
+            $space = 1;
+        }else{
+            $space = 0;
+        }
+        //dd($space);
+        return view('sketches.index', compact('code', 'space'));
     }
 
     /**
@@ -41,19 +51,16 @@ class SketchesController extends Controller
      */
     public function store(Request $request)
     {
-        /*$sketchItem = new SketchItem($request->all());
-        $sketchItem->id_pallet = 11;
-        $sketchItem->number = 22;
-        $sketchItem->number_pallet = 22;
-        $sketchItem->code = 22;
-        $sketchItem->position = 'a';
-        $sketchItem->save();*/
         $id_load = Load::select('id')->where('code', '=', $request->code)->get();
+        // Generar espacios
+        for($i = 1; $i <= 24; $i++)
+        {
+            $sketch = new Sketch();
+            $sketch->id_load = $id_load[0]->id;
+            $sketch->position = $i;
+            $sketch->save();
+        }
         
-        $sketch = new Sketch();
-        $sketch->id_load = $id_load[0]->id;
-        $sketch->position = 2;
-        $sketch->save();
 
         //dd($id_load[0]->id);
 
