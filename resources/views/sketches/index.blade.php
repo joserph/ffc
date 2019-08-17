@@ -21,24 +21,19 @@
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
                         <li class="active">Contenedores</li>
                     </ol>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" width="10px">ID</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Código DOL</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th colspan="3" class="text-center">Aciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                    <hr>
+                    <div class="row">
+                        @foreach ($sketchs as $item)
+                            <div class="col-md-6">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item active">
+                                        <h4 class="list-group-item-heading">Pos {{ $item->position }}</h4>
+                                        <p class="list-group-item-text">...</p>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    
-                    
                 </div>
             </div>
         </div>

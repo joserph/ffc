@@ -23,14 +23,16 @@ class SketchesController extends Controller
         $load = Load::select('id')->where('code', '=', $code)->get();
         $id_load = $load[0]->id;
         $position24 = Sketch::where('id_load', '=', $id_load)->where('position', '=', '24')->get()->last();
+        $sketchs = Sketch::where('id_load', '=', $id_load)->get();
+        
         if($position24)
         {
             $space = 1;
         }else{
             $space = 0;
         }
-        //dd($space);
-        return view('sketches.index', compact('code', 'space'));
+        //dd($sketch);
+        return view('sketches.index', compact('code', 'space', 'sketchs'));
     }
 
     /**
