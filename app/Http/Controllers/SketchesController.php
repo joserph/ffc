@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SketchItem;
 use App\Sketch;
 use App\Load;
+use App\Pallet;
 
 class SketchesController extends Controller
 {
@@ -31,8 +32,10 @@ class SketchesController extends Controller
         }else{
             $space = 0;
         }
-        //dd($sketch);
-        return view('sketches.index', compact('code', 'space', 'sketchs'));
+        // Lista de paletas
+        $pallets = Pallet::where('id_load', '=', $id_load)->pluck('counter', 'id');
+        //dd($pallets);
+        return view('sketches.index', compact('code', 'space', 'sketchs', 'pallets'));
     }
 
     /**

@@ -28,7 +28,22 @@
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active">
                                         <h4 class="list-group-item-heading">Pos {{ $item->position }}</h4>
-                                        <p class="list-group-item-text">...</p>
+                                        <p class="list-group-item-text">
+                                            <hr>
+                                            {{ Form::model($sketchs, ['route' => ['sketches.update', $item->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+                                                <div class="form-group">
+                                                    <div class="col-md-4">
+                                                        {!! Form::label('pallets', 'Tags') !!}
+                                                        {!! Form::select('pallets[]', $pallets, null, ['class' => 'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-4">
+                                                        <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                                                    </div>
+                                                </div>
+                                            {{ Form::close() }}
+                                        </p>
                                     </a>
                                 </div>
                             </div>
@@ -39,4 +54,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection
