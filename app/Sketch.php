@@ -9,7 +9,7 @@ class Sketch extends Model
     protected $table = 'sketches';
 
     protected $fillable = [
-        'id_pallet_items', 'position'
+        'id_pallet', 'position'
     ];
 
     /*public function user()

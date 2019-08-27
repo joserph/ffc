@@ -33,8 +33,10 @@
                                             {{ Form::model($sketchs, ['route' => ['sketches.update', $item->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
                                                 <div class="form-group">
                                                     <div class="col-md-4">
-                                                        {!! Form::label('pallets', 'Tags') !!}
-                                                        {!! Form::select('pallets[]', $pallets, null, ['class' => 'form-control']) !!}
+                                                        {!! Form::hidden('id_load', $item->id_load) !!}
+                                                        {!! Form::hidden('id_load', $item->position) !!}
+                                                        {!! Form::label('pallets', 'Paleta') !!}
+                                                        {!! Form::select('id_pallet', $pallets, null, ['class' => 'form-control']) !!}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

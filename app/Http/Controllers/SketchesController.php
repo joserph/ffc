@@ -104,7 +104,12 @@ class SketchesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sketch = Sketch::find($id);
+
+        $sketch->update($request->all());
+        //dd($request->id_pallet_items);
+
+        return back()->with('edit', 'Posición Actualizada con exito');
     }
 
     /**
