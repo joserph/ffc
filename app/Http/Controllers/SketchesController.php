@@ -7,6 +7,8 @@ use App\SketchItem;
 use App\Sketch;
 use App\Load;
 use App\Pallet;
+use App\PalletItem;
+use App\Farm;
 
 class SketchesController extends Controller
 {
@@ -34,8 +36,13 @@ class SketchesController extends Controller
         }
         // Lista de paletas
         $pallets = Pallet::where('id_load', '=', $id_load)->pluck('counter', 'id');
-        //dd($pallets);
-        return view('sketches.index', compact('code', 'space', 'sketchs', 'pallets'));
+        $all_pallets = Pallet::where('id_load', '=', $id_load)->get();
+        // Items de las paletas
+        $pallet_items = PalletItem::where('id_load', '=', $id_load)->get();
+        // Fincas
+        $farm = Farm::get();
+        //dd($farm);
+        return view('sketches.index', compact('code', 'space', 'sketchs', 'pallets', 'all_pallets', 'pallet_items', 'farm'));
     }
 
     /**
