@@ -31,7 +31,7 @@
                     </ol>
                     {{ Form::model($palletitems, ['route' => ['palletitems.update', $palletitems->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
-                        @include('palletitems.partials.form')
+                        @include('palletitems.partials.form2')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-sync-alt"></i> Actualizar</button>

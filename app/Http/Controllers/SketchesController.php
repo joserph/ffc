@@ -35,13 +35,13 @@ class SketchesController extends Controller
             $space = 0;
         }
         // Lista de paletas
-        $pallets = Pallet::where('id_load', '=', $id_load)->pluck('counter', 'id');
+        $pallets = Pallet::where('id_load', '=', $id_load)->where('in_pallet', '=', null)->pluck('counter', 'id');
         $all_pallets = Pallet::where('id_load', '=', $id_load)->get();
         // Items de las paletas
         $pallet_items = PalletItem::where('id_load', '=', $id_load)->get();
         // Fincas
         $farm = Farm::get();
-        //dd($farm);
+        //dd($pallets);
         return view('sketches.index', compact('code', 'space', 'sketchs', 'pallets', 'all_pallets', 'pallet_items', 'farm'));
     }
 
@@ -114,7 +114,15 @@ class SketchesController extends Controller
         $sketch = Sketch::find($id);
 
         $sketch->update($request->all());
-        //dd($request->id_pallet_items);
+
+        // Actualizar campo "in_pallet"
+        $pallet_id = Pallet::select('id')->where('id', '=', $sketch->id_pallet)->get();
+        //dd($pallet_id[0]->id);
+        $pallet_update = Pallet::find($pallet_id[0]->id);
+        $pallet_update->in_pallet = 1;
+        $pallet_update->save();
+
+        //dd($sketch->id_pallet_items);
 
         return back()->with('edit', 'Posición Actualizada con exito');
     }

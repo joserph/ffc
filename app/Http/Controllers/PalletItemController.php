@@ -53,9 +53,18 @@ class PalletItemController extends Controller
      */
     public function store(AddPalletItemRequest $request)
     {
-        $palletItem = PalletItem::create($request->all());
-        $pallet = Pallet::where('id', '=', $palletItem->id_pallet)->get();
+        $palletitem = PalletItem::create($request->all());
+        $pallet = Pallet::where('id', '=', $palletitem->id_pallet)->get();
         $load = Load::where('id', '=', $pallet[0]->id_load)->get();
+
+        // Total paleta
+        $total_pallet = PalletItem::where('id_pallet', '=', $palletitem->id_pallet)->sum('quantity');
+        //dd($total_pallet);
+        $pallet_update = Pallet::find($palletitem->id_pallet);
+        $pallet_update->quantity = $total_pallet;
+        $pallet_update->save();
+
+
         //dd($load);
         return redirect()->route('pallets.index', $load[0]->code)
             ->with('info', 'Item Guardado con exito');
@@ -112,6 +121,13 @@ class PalletItemController extends Controller
     {
         $palletitem = PalletItem::find($id);
         $palletitem->update($request->all());
+
+        // Total paleta
+        $total_pallet = PalletItem::where('id_pallet', '=', $palletitem->id_pallet)->sum('quantity');
+        //dd($total_pallet);
+        $pallet_update = Pallet::find($palletitem->id_pallet);
+        $pallet_update->quantity = $total_pallet;
+        $pallet_update->save();
 
         $palletitemsCode = PalletItem::select('id_pallet')->where('id', '=', $id)->get();
         $pallets = Pallet::select('id_load')->where('id', '=', $palletitemsCode[0]->id_pallet)->get();  

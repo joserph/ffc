@@ -18,6 +18,7 @@ class CreatePalletsTable extends Migration
 
             $table->string('counter');
             $table->string('number');
+            $table->integer('in_pallet')->nullable();
             $table->integer('quantity')->nullable();
             $table->integer('id_load')->unsigned();
             $table->integer('id_user')->unsigned();            
