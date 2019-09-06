@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('list-pallet-pdf', 'PalletController@exportPdf')->name('pallets.pdf');
+
 // Routes
 Route::middleware(['auth'])->group(function(){
     // Roles

@@ -9,6 +9,7 @@ use App\Http\Requests\AddPalletRequest;
 use App\PalletItem;
 use App\Farm;
 use App\Client;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PalletController extends Controller
 {
@@ -51,6 +52,14 @@ class PalletController extends Controller
         $clients = Client::all();
         //dd($load);
         return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients', 'total_container', 'total_hb', 'total_qb', 'total_eb'));
+    }
+
+    public function exportPdf()
+    {
+        $pallets = Pallet::get();
+        $pdf = PDF::loadView('pallets.pdf', compact('pallets'));
+        //dd($pallets);
+        return $pdf->download('list-pallets.pdf');
     }
 
     /**
