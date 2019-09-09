@@ -33,9 +33,12 @@ class InvoiceHeaderController extends Controller
         $carrier = ($carrier) ? $carrier->carrier : null;
         // Fecha
         $date_load = $load_code[0]->date;
-        //dd($load_code[0]->date);
+        // Crear o editar
+        $id_invoice = InvoiceHeader::where('id_load', '=', $load)->select('id')->get()->last();
+        $id_invoice = ($id_invoice) ? $id_invoice->id : null;
+        //dd($id_load);
 
-        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load'));
+        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice'));
     }
 
     /**
@@ -82,7 +85,8 @@ class InvoiceHeaderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoiceh = InvoiceHeader::find($id);
+        return view('invoiceh.edit', compact('invoiceh'));
     }
 
     /**
@@ -94,7 +98,13 @@ class InvoiceHeaderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoiceh = InvoiceHeader::find($id);
+        $invoiceh->update($request->all());
+
+        $load = Load::where('id', '=', $invoiceh->id_load)->get();
+
+        return redirect()->route('invoiceh.index', $load[0]->code)
+            ->with('edit', 'Factura actualizada con exito');
     }
 
     /**
@@ -105,6 +115,12 @@ class InvoiceHeaderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoiceh = InvoiceHeader::find($id);
+        $invoiceh->delete();
+
+        $load = Load::where('id', '=', $invoiceh->id_load)->get();
+
+        return redirect()->route('invoiceh.index', $load[0]->code)
+            ->with('danger', 'Factura Eliminada correctamente');
     }
 }

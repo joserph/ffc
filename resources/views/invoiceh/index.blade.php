@@ -8,7 +8,11 @@
                 <div class="panel-heading">
                     <i class="fas fa-file-invoice-dollar"></i> Factura Comercial
                     @can('products.create')
-                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        @if($id_invoice)
+                            <a href="{{ route('invoiceh.edit', $id_invoice) }}" class="btn btn-sm btn-warning pull-right"><i class="far fa-edit"></i> Editar</a>
+                        @else
+                            <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        @endif
                     @endcan
                 </div>
                 <div class="panel-body">
