@@ -21,4 +21,9 @@ class Load extends Model
     {
         return $this->hasMany('App\Pallet', 'id_load');
     }
+
+    public function invoiceheader()
+    {
+        return $this->hasMany('App\Pallet', 'id_load');
+    }
 }

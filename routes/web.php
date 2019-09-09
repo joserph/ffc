@@ -215,5 +215,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('sketches/{sketches}/edit', 'SketchesController@edit')->name('sketches.edit')
         ->middleware('permission:sketches.edit');
+
+    // Invoice Header
+    Route::post('invoiceh/store', 'InvoiceHeaderController@store')->name('invoiceh.store')
+    ->middleware('permission:invoiceh.create');
+
+    Route::get('invoiceh', 'InvoiceHeaderController@index')->name('invoiceh.index')
+        ->middleware('permission:invoiceh.index');
+
+    Route::get('invoiceh/create/{invoiceh}', 'InvoiceHeaderController@create')->name('invoiceh.create')
+        ->middleware('permission:invoiceh.create');
+
+    Route::put('invoiceh/{invoiceh}', 'InvoiceHeaderController@update')->name('invoiceh.update')
+        ->middleware('permission:invoiceh.edit');
+
+    Route::get('invoiceh/{invoiceh}', 'InvoiceHeaderController@show')->name('invoiceh.show')
+        ->middleware('permission:invoiceh.show');
+
+    Route::delete('invoiceh/{invoiceh}', 'InvoiceHeaderController@destroy')->name('invoiceh.destroy')
+        ->middleware('permission:invoiceh.destroy');
+
+    Route::get('invoiceh/{invoiceh}/edit', 'InvoiceHeaderController@edit')->name('invoiceh.edit')
+        ->middleware('permission:invoiceh.edit');
         
 });
