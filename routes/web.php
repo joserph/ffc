@@ -237,5 +237,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('invoiceh/{invoiceh}/edit', 'InvoiceHeaderController@edit')->name('invoiceh.edit')
         ->middleware('permission:invoiceh.edit');
+
+    // Comercial Invoice Items
+    Route::post('comercialinvoiveitem/store', 'ComercialInvoiceItemController@store')->name('comercialinvoiveitem.store')
+    ->middleware('permission:comercialinvoiveitem.create');
+
+    Route::get('comercialinvoiveitem', 'ComercialInvoiceItemController@index')->name('comercialinvoiveitem.index')
+        ->middleware('permission:comercialinvoiveitem.index');
+
+    Route::get('comercialinvoiveitem/create/{comercialinvoiveitem}', 'ComercialInvoiceItemController@create')->name('comercialinvoiveitem.create')
+        ->middleware('permission:comercialinvoiveitem.create');
+
+    Route::put('comercialinvoiveitem/{comercialinvoiveitem}', 'ComercialInvoiceItemController@update')->name('comercialinvoiveitem.update')
+        ->middleware('permission:comercialinvoiveitem.edit');
+
+    Route::get('comercialinvoiveitem/{comercialinvoiveitem}', 'ComercialInvoiceItemController@show')->name('comercialinvoiveitem.show')
+        ->middleware('permission:comercialinvoiveitem.show');
+
+    Route::delete('comercialinvoiveitem/{comercialinvoiveitem}', 'ComercialInvoiceItemController@destroy')->name('comercialinvoiveitem.destroy')
+        ->middleware('permission:comercialinvoiveitem.destroy');
+
+    Route::get('comercialinvoiveitem/{comercialinvoiveitem}/edit', 'ComercialInvoiceItemController@edit')->name('comercialinvoiveitem.edit')
+        ->middleware('permission:comercialinvoiveitem.edit');
         
 });

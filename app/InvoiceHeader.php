@@ -29,4 +29,9 @@ class InvoiceHeader extends Model
         return $this->belongsTo('App\User', 'id_user');
     }
 
+    public function comercialinvoiceitem()
+    {
+        return $this->hasMany('App\comercial_invoice_items', 'id_invoiceh');
+    }
+
 }
