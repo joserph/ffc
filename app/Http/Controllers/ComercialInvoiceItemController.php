@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ComercialInvoiceItem;
+use App\Load;
 
 class ComercialInvoiceItemController extends Controller
 {
@@ -34,7 +36,11 @@ class ComercialInvoiceItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comercial_invoice_item = ComercialInvoiceItem::create($request->all());
+        $load = Load::where('id', '=', $comercial_invoice_item->id_load)->get();
+
+        return redirect()->route('invoiceh.index', $load[0]->code)
+            ->with('info', 'Item guardado con exito');
     }
 
     /**

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Load;
 use App\InvoiceHeader;
+use App\Farm;
+use App\Client;
+use App\ComercialInvoiceItem;
 
 class InvoiceHeaderController extends Controller
 {
@@ -36,9 +39,17 @@ class InvoiceHeaderController extends Controller
         // Crear o editar
         $id_invoice = InvoiceHeader::where('id_load', '=', $load)->select('id')->get()->last();
         $id_invoice = ($id_invoice) ? $id_invoice->id : null;
-        //dd($id_load);
+        // Fincas
+        $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
+        $farms_all = Farm::all();
+        // Clientes
+        $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
+        
+        // Comercial Invoice Items
+        $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
+        //dd($comercial_invoice_items);
 
-        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice'));
+        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice', 'farms', 'clients', 'comercial_invoice_items', 'farms_all'));
     }
 
     /**

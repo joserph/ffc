@@ -50,19 +50,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach($comercial_invoice_items as $item)
+                                    <tr>
+                                        <td>{{ $item->fulls }}</td>
+                                        <td>{{ $item->pieces }}</td>
+                                        <td>
+                                            @foreach ($farms_all as $farm)
+                                                @if($item->id_farm == $farm->id)
+                                                    {{ $farm->name }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $item->description }}</td>
+                                        <td>{{ $item->hawb }}</td>
+                                        <td>{{ $item->stems }}</td>
+                                        <td>{{ $item->bunches }}</td>
+                                        <td>{{ $item->price }}</td>
+                                        <td>{{ $item->total }}</td>
+                                        <td class="text-center" width="10px">
+                                            <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                        </td>
+                                        <td class="text-center" width="10px">
+                                            {!! Form::open(['route' => ['comercialinvoiveitem.destroy', $item->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar item?")']) !!}
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -148,6 +162,7 @@
                         {!! Form::hidden('id_user', \Auth::user()->id) !!}
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
                         {!! Form::hidden('id_load', $load) !!}
+                        {!! Form::hidden('id_invoiceh', $id_invoice) !!}
                         @include('comercialiitems.partials.form')
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">

@@ -7,7 +7,7 @@
 <div class="form-group">
     {{ Form::label('id_client', 'Cliente', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-6">
-        {{ Form::select('id_client', $clients, null, ['class' => 'form-control', 'placeholder' => 'Seleccione finca']) }}
+        {{ Form::select('id_client', $clients, null, ['class' => 'form-control', 'placeholder' => 'Seleccione cliente']) }}
     </div>
 </div>
 
