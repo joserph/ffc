@@ -52,21 +52,21 @@
                             <tbody>
                                 @foreach($comercial_invoice_items as $item)
                                     <tr>
-                                        <td>{{ $item->fulls }}</td>
-                                        <td>{{ $item->pieces }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $item->fulls }}</td>
+                                        <td class="text-center">{{ $item->pieces }}</td>
+                                        <td class="text-center">
                                             @foreach ($farms_all as $farm)
                                                 @if($item->id_farm == $farm->id)
-                                                    {{ $farm->name }}
+                                                    {{ strtoupper($farm->name) }}
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ $item->description }}</td>
-                                        <td>{{ $item->hawb }}</td>
-                                        <td>{{ $item->stems }}</td>
-                                        <td>{{ $item->bunches }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        <td>{{ $item->total }}</td>
+                                        <td class="text-center">{{ $item->description }}</td>
+                                        <td class="text-center">{{ $item->hawb }}</td>
+                                        <td class="text-center">{{ $item->stems }}</td>
+                                        <td class="text-center">{{ $item->bunches }}</td>
+                                        <td class="text-center">$ {{ $item->price }}</td>
+                                        <td class="text-center">$ {{ $item->total }}</td>
                                         <td class="text-center" width="10px">
                                             <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         </td>

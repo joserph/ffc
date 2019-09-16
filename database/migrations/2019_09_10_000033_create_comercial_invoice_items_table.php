@@ -23,6 +23,9 @@ class CreateComercialInvoiceItemsTable extends Migration
             $table->string('description')->nullable();
             $table->string('hawb')->nullable();
             $table->integer('pieces')->nullable();
+            $table->integer('hb')->nullable();
+            $table->integer('qb')->nullable();
+            $table->integer('eb')->nullable();
             $table->integer('stems')->nullable();
             $table->double('price')->nullable();
             $table->integer('bunches')->nullable();
