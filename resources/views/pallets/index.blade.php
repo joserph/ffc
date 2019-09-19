@@ -50,7 +50,6 @@
                                             @endphp
                                             @foreach ($palletItem as $item2)
                                                 @if($item->id == $item2->id_pallet)
-
                                                 @php 
                                                     $hb+=$item2->hb;
                                                     $qb+=$item2->qb;

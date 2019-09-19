@@ -8,6 +8,8 @@ use App\InvoiceHeader;
 use App\Farm;
 use App\Client;
 use App\ComercialInvoiceItem;
+use App\Pallet;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class InvoiceHeaderController extends Controller
 {
@@ -50,6 +52,28 @@ class InvoiceHeaderController extends Controller
         //dd($comercial_invoice_items);
 
         return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice', 'farms', 'clients', 'comercial_invoice_items', 'farms_all'));
+    }
+
+
+    public function exportPdf()
+    {
+        // Codigo
+        $url= $_SERVER["REQUEST_URI"];
+        $div = explode("?", $url);
+        $code = $div[1];
+        // Load
+        $load_code = Load::where('id', '=', $code)->get();
+        $load = $load_code[0]->id;
+        
+        // Comercial Invoice Items
+        $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
+        // Fincas
+        $farms_all = Farm::all();
+        //dd($comercial_invoice_items);
+        
+        $pdf = PDF::loadView('invoiceh.pdf', compact('comercial_invoice_items', 'farms_all'));
+        
+        return $pdf->download('comercial-invoice.pdf');
     }
 
     /**

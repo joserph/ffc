@@ -14,6 +14,7 @@
                             <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                         @endif
                     @endcan
+                    <a href="{{ route('comercial-invoice.pdf', $load) }}" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                 </div>
                 <div class="panel-body">
                     <ol class="breadcrumb">
@@ -50,7 +51,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $fulls = 0; $pcs = 0; $stems = 0; $total = 0;
+                                @endphp
                                 @foreach($comercial_invoice_items as $item)
+                                    @php
+                                        $fulls+= $item->fulls;
+                                        $pcs+= $item->pieces;
+                                        $stems+= $item->stems;
+                                        $total+= $item->total;
+                                    @endphp
                                     <tr>
                                         <td class="text-center">{{ $item->fulls }}</td>
                                         <td class="text-center">{{ $item->pieces }}</td>
@@ -65,8 +75,8 @@
                                         <td class="text-center">{{ $item->hawb }}</td>
                                         <td class="text-center">{{ $item->stems }}</td>
                                         <td class="text-center">{{ $item->bunches }}</td>
-                                        <td class="text-center">$ {{ $item->price }}</td>
-                                        <td class="text-center">$ {{ $item->total }}</td>
+                                        <td class="text-center">${{ $item->price }}</td>
+                                        <td class="text-center">${{ $item->total }}</td>
                                         <td class="text-center" width="10px">
                                             <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         </td>
@@ -78,6 +88,15 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">{{ $fulls }}</th>
+                                    <th class="text-center">{{ $pcs }}</th>
+                                    <th colspan="3" class="text-center"></th>
+                                    <th class="text-center">{{ $stems }}</th>
+                                    <th colspan="3" class="text-right">${{ $total }}</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     
