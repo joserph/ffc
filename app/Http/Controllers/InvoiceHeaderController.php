@@ -69,9 +69,11 @@ class InvoiceHeaderController extends Controller
         $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
         // Fincas
         $farms_all = Farm::all();
+        // Fecha
+        $date_load = $load_code[0]->date;
         //dd($comercial_invoice_items);
         
-        $pdf = PDF::loadView('invoiceh.pdf', compact('comercial_invoice_items', 'farms_all'));
+        $pdf = PDF::loadView('invoiceh.pdf', compact('comercial_invoice_items', 'farms_all', 'date_load'));
         
         return $pdf->download('comercial-invoice.pdf');
     }
