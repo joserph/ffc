@@ -14,7 +14,7 @@
                             <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                         @endif
                     @endcan
-                    <a href="{{ route('comercial-invoice.pdf', $load) }}" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
+                    <a href="{{ route('comercial-invoice.pdf', $load) }}" target="_blank" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                 </div>
                 <div class="panel-body">
                     <ol class="breadcrumb">

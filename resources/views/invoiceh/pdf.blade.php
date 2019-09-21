@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-    <h1>COMERCIAL INVOICE</h1>
+    <h1 class="text-center">COMERCIAL INVOICE</h1>
     <table>
         <thead>
             <tr>
@@ -66,30 +66,29 @@
             </tr>
         </tbody>
     </table>
+    <br>
     <table>
         <thead>
             <tr>
-                <th>Farm</th>
-                <th>Date / Fecha</th>
-                <th colspan="2">Country INVOICE N°</th>
-                <th>B/L N°</th>
-                <th>Carrier</th>
+                <th class="text-center medium-letter">Farm</th>
+                <th class="text-center medium-letter">Date / Fecha</th>
+                <th colspan="2" class="text-center medium-letter">Country INVOICE N°</th>
+                <th class="text-center medium-letter">B/L N°</th>
+                <th class="text-center medium-letter">Carrier</th>
             </tr>
         </thead>
-        <br>
         <tbody>
             <tr>
-                <td>VF</td>
-                <td>{{ $date_load }}</td>
-                <td>GYE</td>
-                <td>190299</td>
-                <td>DOLQ GYQY2633 SD</td>
-                <td>DOLE NARCOTEC</td>
+                <td class="small-letter text-center">VF</td>
+                <td class="small-letter text-center">{{ $date_load }}</td>
+                <td class="small-letter text-center">GYE</td>
+                <td class="small-letter text-center">{{ $invoice_n }}</td>
+                <td class="small-letter text-center">{{ $bl }}</td>
+                <td class="small-letter text-center">{{ $carrier }}</td>
             </tr>
         </tbody>
     </table>
-
-    <hr>
+    <br>
     <table>
         <thead>
             <tr>

@@ -108,6 +108,12 @@ class ComercialInvoiceItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $c_i_item = ComercialInvoiceItem::find($id);
+        $c_i_item->delete();
+
+        $load = Load::where('id', '=', $c_i_item->id_load)->get();
+
+        return redirect()->route('invoiceh.index', $load[0]->code)
+            ->with('danger', 'Item Eliminado correctamente');
     }
 }

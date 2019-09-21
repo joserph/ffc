@@ -71,11 +71,20 @@ class InvoiceHeaderController extends Controller
         $farms_all = Farm::all();
         // Fecha
         $date_load = $load_code[0]->date;
+        // BL N°
+        $bl = InvoiceHeader::where('id_load', '=', $load)->select('bl')->get()->last();
+        $bl = ($bl) ? $bl->bl : null;
+        // Invoice N°
+        $invoice_n = InvoiceHeader::where('id_load', '=', $load)->select('invoice')->get()->last();
+        $invoice_n = ($invoice_n) ? $invoice_n->invoice : null;
+        // Carrier
+        $carrier = InvoiceHeader::where('id_load', '=', $load)->select('carrier')->get()->last();
+        $carrier = ($carrier) ? $carrier->carrier : null;
         //dd($comercial_invoice_items);
         
-        $pdf = PDF::loadView('invoiceh.pdf', compact('comercial_invoice_items', 'farms_all', 'date_load'));
+        $pdf = PDF::loadView('invoiceh.pdf', compact('comercial_invoice_items', 'farms_all', 'date_load', 'bl', 'invoice_n', 'carrier'));
         
-        return $pdf->download('comercial-invoice.pdf');
+        return $pdf->stream();
     }
 
     /**
