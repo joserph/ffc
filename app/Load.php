@@ -9,7 +9,7 @@ class Load extends Model
     protected $table = 'loads';
 
     protected $fillable = [
-        'name', 'code', 'date', 'id_user', 'update_user'
+        'name', 'code', 'bl', 'carrier', 'invoice', 'date', 'id_user', 'update_user'
     ];
 
     public function user()

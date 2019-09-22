@@ -18,6 +18,9 @@ class CreateLoadsTable extends Migration
 
             $table->string('name');
             $table->string('code')->nullable();
+            $table->string('bl')->nullable();
+            $table->string('carrier')->nullable();
+            $table->string('invoice')->nullable();
             $table->date('date');
             $table->integer('id_user')->unsigned();            
             $table->integer('update_user')->nullable();
