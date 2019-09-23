@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Pallet', 'id_user');
     }
+
+    public function freighter()
+    {
+        return $this->hasMany('App\Freighter', 'id_user');
+    }
+
+    public function logisticcompany()
+    {
+        return $this->hasMany('App\LogisticCompany', 'id_user');
+    }
 }

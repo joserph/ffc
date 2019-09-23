@@ -37,35 +37,45 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                        @can('freighters.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('freighters.index') }}">Mi empresa</a>
+                            </li>
+                        @endcan
+                        @can('logisticscompany.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logisticscompany.index') }}">Logística</a>
+                            </li>
+                        @endcan
                         @can('clients.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
+                            </li>
                         @endcan
                         @can('farms.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('farms.index') }}">Fincas</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('farms.index') }}">Fincas</a>
+                            </li>
                         @endcan
                         @can('loads.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('loads.index') }}">Carguera</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('loads.index') }}">Carguera</a>
+                            </li>
                         @endcan
                         @can('users.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+                            </li>
                         @endcan
                         @can('roles.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                            </li>
                         @endcan
                         @can('permissions.index')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('permissions.index') }}">Permisos</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('permissions.index') }}">Permisos</a>
+                            </li>
                         @endcan
                     </ul>
 

@@ -28,14 +28,14 @@ class InvoiceHeaderController extends Controller
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
         // BL N°
-        $bl = InvoiceHeader::where('id_load', '=', $load)->select('bl')->get()->last();
-        $bl = ($bl) ? $bl->bl : null;
+        //$bl = InvoiceHeader::where('id_load', '=', $load)->select('bl')->get()->last();
+        $bl = ($load_code[0]->bl) ? $load_code[0]->bl : null;
         // Invoice N°
-        $invoice_n = InvoiceHeader::where('id_load', '=', $load)->select('invoice')->get()->last();
-        $invoice_n = ($invoice_n) ? $invoice_n->invoice : null;
+        //$invoice_n = InvoiceHeader::where('id_load', '=', $load)->select('invoice')->get()->last();
+        $invoice_n = ($load_code[0]->invoice) ? $load_code[0]->invoice : null;
         // Carrier
-        $carrier = InvoiceHeader::where('id_load', '=', $load)->select('carrier')->get()->last();
-        $carrier = ($carrier) ? $carrier->carrier : null;
+        //$carrier = InvoiceHeader::where('id_load', '=', $load)->select('carrier')->get()->last();
+        $carrier = ($load_code[0]->carrier) ? $load_code[0]->carrier : null;
         // Fecha
         $date_load = $load_code[0]->date;
         // Crear o editar

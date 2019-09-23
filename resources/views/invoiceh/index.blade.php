@@ -10,11 +10,12 @@
                     @can('products.create')
                         @if($id_invoice)
                             <a href="{{ route('invoiceh.edit', $id_invoice) }}" class="btn btn-sm btn-warning pull-right"><i class="far fa-edit"></i> Editar</a>
+                            <a href="{{ route('comercial-invoice.pdf', $load) }}" target="_blank" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                         @else
                             <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                         @endif
                     @endcan
-                    <a href="{{ route('comercial-invoice.pdf', $load) }}" target="_blank" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
+                    
                 </div>
                 <div class="panel-body">
                     <ol class="breadcrumb">

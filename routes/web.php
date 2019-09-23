@@ -261,5 +261,49 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('comercialinvoiveitem/{comercialinvoiveitem}/edit', 'ComercialInvoiceItemController@edit')->name('comercialinvoiveitem.edit')
         ->middleware('permission:comercialinvoiveitem.edit');
+
+    // Freighters
+    Route::post('freighters/store', 'FreighterController@store')->name('freighters.store')
+    ->middleware('permission:freighters.create');
+
+    Route::get('freighters', 'FreighterController@index')->name('freighters.index')
+        ->middleware('permission:freighters.index');
+
+    Route::get('freighters/create', 'FreighterController@create')->name('freighters.create')
+        ->middleware('permission:freighters.create');
+
+    Route::put('freighters/{freighters}', 'FreighterController@update')->name('freighters.update')
+        ->middleware('permission:freighters.edit');
+
+    Route::get('freighters/{freighters}', 'FreighterController@show')->name('freighters.show')
+        ->middleware('permission:freighters.show');
+
+    Route::delete('freighters/{freighters}', 'FreighterController@destroy')->name('freighters.destroy')
+        ->middleware('permission:freighters.destroy');
+
+    Route::get('freighters/{freighters}/edit', 'FreighterController@edit')->name('freighters.edit')
+        ->middleware('permission:freighters.edit');
+
+    // Logistic Company
+    Route::post('logisticscompany/store', 'LogisticCompanyController@store')->name('logisticscompany.store')
+    ->middleware('permission:logisticscompany.create');
+
+    Route::get('logisticscompany', 'LogisticCompanyController@index')->name('logisticscompany.index')
+        ->middleware('permission:logisticscompany.index');
+
+    Route::get('logisticscompany/create', 'LogisticCompanyController@create')->name('logisticscompany.create')
+        ->middleware('permission:logisticscompany.create');
+
+    Route::put('logisticscompany/{logisticscompany}', 'LogisticCompanyController@update')->name('logisticscompany.update')
+        ->middleware('permission:logisticscompany.edit');
+
+    Route::get('logisticscompany/{logisticscompany}', 'LogisticCompanyController@show')->name('logisticscompany.show')
+        ->middleware('permission:logisticscompany.show');
+
+    Route::delete('logisticscompany/{logisticscompany}', 'LogisticCompanyController@destroy')->name('logisticscompany.destroy')
+        ->middleware('permission:logisticscompany.destroy');
+
+    Route::get('logisticscompany/{logisticscompany}/edit', 'LogisticCompanyController@edit')->name('logisticscompany.edit')
+        ->middleware('permission:logisticscompany.edit');
         
 });
