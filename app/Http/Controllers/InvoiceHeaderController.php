@@ -9,6 +9,8 @@ use App\Farm;
 use App\Client;
 use App\ComercialInvoiceItem;
 use App\Pallet;
+use App\LogisticCompany;
+use App\Freighter;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class InvoiceHeaderController extends Controller
@@ -46,12 +48,15 @@ class InvoiceHeaderController extends Controller
         $farms_all = Farm::all();
         // Clientes
         $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
-        
         // Comercial Invoice Items
         $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
+        // Empresas de Logistica
+        $lcompanies = LogisticCompany::orderBy('id', 'DESC')->pluck('name', 'id');
+        // Mi empresa
+        $freighter = Freighter::where('id', '=', '1')->first();
         //dd($comercial_invoice_items);
 
-        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice', 'farms', 'clients', 'comercial_invoice_items', 'farms_all'));
+        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice', 'farms', 'clients', 'comercial_invoice_items', 'farms_all', 'lcompanies', 'freighter'));
     }
 
 

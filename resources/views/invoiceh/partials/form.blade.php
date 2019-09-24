@@ -1,18 +1,13 @@
 <div class="form-group">
-    {{ Form::label('bl', 'BL N°', ['class' => 'col-sm-4 control-label']) }}
+    {{ Form::label('id_logistics_company', 'Empresa de Logística', ['class' => 'col-sm-4 control-label']) }}
     <div class="col-sm-6">
-        {{ Form::text('bl', null, ['class' => 'form-control']) }}
+        {{ Form::select('id_logistics_company', $lcompanies, null, ['class' => 'form-control', 'placeholder' => 'Seleccione cliente']) }}
     </div>
 </div>
-<div class="form-group">
-    {{ Form::label('carrier', 'Carrier', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('carrier', null, ['class' => 'form-control']) }}
-    </div>
-</div>
-<div class="form-group">
-{{ Form::label('invoice', 'Country INVOICE N°', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('invoice', null, ['class' => 'form-control']) }}
-    </div>
-</div>
+{!! Form::hidden('id_freighter', $freighter->id) !!}
+{!! Form::hidden('id_load', $load) !!}
+{!! Form::hidden('bl', $bl) !!}
+{!! Form::hidden('carrier', $carrier) !!}
+{!! Form::hidden('invoice', $invoice_n) !!}
+{!! Form::hidden('id_user', \Auth::user()->id) !!}
+{!! Form::hidden('update_user', \Auth::user()->id) !!}
