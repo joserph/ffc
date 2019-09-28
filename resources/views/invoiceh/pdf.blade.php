@@ -52,16 +52,20 @@
         <tbody>
             <tr>
                 <td class="small-letter">
-                    SIERRA CARGO S.A. RUC: 1791330056001 <br>
-                    DE LOS ROSALES N45-14 Y DE LOS TULIPANES <br>
-                    PH: 5932277776 ZIP: 170184 <br>
-                    QUITO-ECUADOR
+                    @foreach ($lcompanies as $item)
+                        @if($invoice_header->id_logistics_company == $item->id)
+                            {{ strtoupper($item->name) }} RUC: {{ $item->ruc }} <br>
+                            {{ strtoupper($item->address) }} <br>
+                            TLF: {{ $item->phone }} <br>
+                            {{ strtoupper($item->parish) }} - {{ strtoupper($item->country) }} <br>
+                        @endif
+                    @endforeach
                 </td>
                 <td class="small-letter">
-                    FRESH FLOWER CARGO <br>
-                    741 SAN PEDRO ST LOS ANGELES, CA 90014 <br>
-                    LOS ANGELES CALIFORNIA US <br>
-                    PH: 2134894061
+                    {{ strtoupper($my_company->name) }} <br>
+                    {{ strtoupper($my_company->address) }} <br>
+                    TLF: {{ $my_company->phone }} <br>
+                    {{ strtoupper($my_company->parish) }} - {{ strtoupper($my_company->country) }} <br>
                 </td>
             </tr>
         </tbody>
@@ -82,9 +86,9 @@
                 <td class="small-letter text-center">VF</td>
                 <td class="small-letter text-center">{{ $date_load }}</td>
                 <td class="small-letter text-center">GYE</td>
-                <td class="small-letter text-center">{{ $invoice_n }}</td>
-                <td class="small-letter text-center">{{ $bl }}</td>
-                <td class="small-letter text-center">{{ $carrier }}</td>
+                <td class="small-letter text-center">{{ $invoice_header->invoice }}</td>
+                <td class="small-letter text-center">{{ $invoice_header->bl }}</td>
+                <td class="small-letter text-center">{{ $invoice_header->carrier }}</td>
             </tr>
         </tbody>
     </table>
