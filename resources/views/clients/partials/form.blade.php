@@ -17,13 +17,13 @@
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('parish', 'Parroquia', ['class' => 'col-sm-2 control-label']) }}
+    {{ Form::label('parish', 'Ciudad', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-4">
         {{ Form::text('parish', null, ['class' => 'form-control']) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('city', 'Ciudad', ['class' => 'col-sm-2 control-label']) }}
+    {{ Form::label('city', 'Estado', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-4">
         {{ Form::text('city', null, ['class' => 'form-control']) }}
     </div>

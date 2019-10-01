@@ -63,7 +63,7 @@
                                         $total+= $item->total;
                                     @endphp
                                     <tr>
-                                        <td class="text-center">{{ $item->fulls }}</td>
+                                        <td class="text-center">{{ number_format($item->fulls, 2, '.','') }}</td>
                                         <td class="text-center">{{ $item->pieces }}</td>
                                         <td class="text-center">
                                             @foreach ($farms_all as $farm)
@@ -76,8 +76,8 @@
                                         <td class="text-center">{{ $item->hawb }}</td>
                                         <td class="text-center">{{ $item->stems }}</td>
                                         <td class="text-center">{{ $item->bunches }}</td>
-                                        <td class="text-center">${{ $item->price }}</td>
-                                        <td class="text-center">${{ $item->total }}</td>
+                                        <td class="text-center">{{ number_format($item->price, 2, ',','') }}</td>
+                                        <td class="text-center">{{ number_format($item->total, 2, ',','.') }}</td>
                                         <td class="text-center" width="10px">
                                             <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         </td>
@@ -91,23 +91,19 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center">{{ $fulls }}</th>
+                                    <th class="text-center">{{ number_format($fulls, 2, '.','') }}</th>
                                     <th class="text-center">{{ $pcs }}</th>
                                     <th colspan="3" class="text-center"></th>
-                                    <th class="text-center">{{ $stems }}</th>
-                                    <th colspan="3" class="text-right">${{ $total }}</th>
+                                    <th class="text-center">{{ number_format($stems, 0, '','.') }}</th>
+                                    <th colspan="2"></th>
+                                    <th class="text-center">{{ number_format($total, 2, ',','.') }}</th>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
-                    
                 </div>
             </div>
-
-            
         </div>
-
-
     </div>
 </div>
 
