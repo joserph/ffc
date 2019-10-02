@@ -62,6 +62,11 @@
                                 <a class="nav-link" href="{{ route('loads.index') }}">Carguera</a>
                             </li>
                         @endcan
+                        @can('coordinations.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('coordinations.index') }}">Coordinaciones</a>
+                            </li>
+                        @endcan
                         @can('users.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>

@@ -305,5 +305,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('logisticscompany/{logisticscompany}/edit', 'LogisticCompanyController@edit')->name('logisticscompany.edit')
         ->middleware('permission:logisticscompany.edit');
+
+    // Coordinations
+    Route::post('coordinations/store', 'CoordinationController@store')->name('coordinations.store')
+    ->middleware('permission:coordinations.create');
+
+    Route::get('coordinations', 'CoordinationController@index')->name('coordinations.index')
+        ->middleware('permission:coordinations.index');
+
+    Route::get('coordinations/create', 'CoordinationController@create')->name('coordinations.create')
+        ->middleware('permission:coordinations.create');
+
+    Route::put('coordinations/{coordinations}', 'CoordinationController@update')->name('coordinations.update')
+        ->middleware('permission:coordinations.edit');
+
+    Route::get('coordinations/{coordinations}', 'CoordinationController@show')->name('coordinations.show')
+        ->middleware('permission:coordinations.show');
+
+    Route::delete('coordinations/{coordinations}', 'CoordinationController@destroy')->name('coordinations.destroy')
+        ->middleware('permission:coordinations.destroy');
+
+    Route::get('coordinations/{coordinations}/edit', 'CoordinationController@edit')->name('coordinations.edit')
+        ->middleware('permission:coordinations.edit');
         
 });
