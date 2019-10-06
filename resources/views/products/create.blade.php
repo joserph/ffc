@@ -11,6 +11,8 @@
 
                 <div class="panel-body">
                     {{ Form::open(['route' => 'products.store']) }}
+                        {!! Form::hidden('id_user', \Auth::user()->id) !!}
+                        {!! Form::hidden('update_user', \Auth::user()->id) !!}
                         @include('products.partials.form')
                     {{ Form::close() }}
                 </div>

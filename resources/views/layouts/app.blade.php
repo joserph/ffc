@@ -58,6 +58,11 @@
                                 <a class="nav-link" href="{{ route('farms.index') }}">Fincas</a>
                             </li>
                         @endcan
+                        @can('products.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">Productos</a>
+                            </li>
+                        @endcan
                         @can('loads.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('loads.index') }}">Carguera</a>

@@ -327,5 +327,27 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('coordinations/{coordinations}/edit', 'CoordinationController@edit')->name('coordinations.edit')
         ->middleware('permission:coordinations.edit');
+
+    // Products
+    Route::post('products/store', 'ProductController@store')->name('products.store')
+    ->middleware('permission:products.create');
+
+    Route::get('products', 'ProductController@index')->name('products.index')
+        ->middleware('permission:products.index');
+
+    Route::get('products/create', 'ProductController@create')->name('products.create')
+        ->middleware('permission:products.create');
+
+    Route::put('products/{products}', 'ProductController@update')->name('products.update')
+        ->middleware('permission:products.edit');
+
+    Route::get('products/{products}', 'ProductController@show')->name('products.show')
+        ->middleware('permission:products.show');
+
+    Route::delete('products/{products}', 'ProductController@destroy')->name('products.destroy')
+        ->middleware('permission:products.destroy');
+
+    Route::get('products/{products}/edit', 'ProductController@edit')->name('products.edit')
+        ->middleware('permission:products.edit');
         
 });
