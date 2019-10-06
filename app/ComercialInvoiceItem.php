@@ -25,7 +25,8 @@ class ComercialInvoiceItem extends Model
         'fulls',    
         'total',
         'id_user',
-        'update_user'
+        'update_user',
+        'stems_p_bunches'
     ];
 
     public function user()
