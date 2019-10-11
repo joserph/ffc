@@ -11,6 +11,7 @@ use App\ComercialInvoiceItem;
 use App\Pallet;
 use App\LogisticCompany;
 use App\Freighter;
+use App\Product;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class InvoiceHeaderController extends Controller
@@ -54,9 +55,29 @@ class InvoiceHeaderController extends Controller
         $lcompanies = LogisticCompany::orderBy('id', 'DESC')->pluck('name', 'id');
         // Mi empresa
         $freighter = Freighter::where('id', '=', '1')->first();
-        //dd($comercial_invoice_items);
+        // Productos
+        $products = Product::orderBy('id', 'DESC')->pluck('name', 'id');
+        $product_all = Product::all();
 
-        return view('invoiceh.index', compact('code', 'load', 'bl', 'invoice_n', 'carrier', 'date_load', 'id_invoice', 'farms', 'clients', 'comercial_invoice_items', 'farms_all', 'lcompanies', 'freighter'));
+        //dd($product);
+
+        return view('invoiceh.index', compact(
+            'code', 
+            'load', 
+            'bl', 
+            'invoice_n', 
+            'carrier', 
+            'date_load', 
+            'id_invoice', 
+            'farms', 
+            'clients', 
+            'comercial_invoice_items', 
+            'farms_all', 
+            'lcompanies', 
+            'freighter', 
+            'products',
+            'product_all'
+        ));
     }
 
 

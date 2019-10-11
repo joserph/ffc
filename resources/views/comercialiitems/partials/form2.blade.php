@@ -1,60 +1,74 @@
 <div class="form-group">
-    {{ Form::label('hb', 'HB', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('hb', $c_i_item->hb, ['class' => 'form-control']) }}
-    </div>
-</div>
-<div class="form-group">
-    {{ Form::label('qb', 'QB', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('qb', $c_i_item->qb, ['class' => 'form-control']) }}
-    </div>
-</div>
-<div class="form-group">
-    {{ Form::label('eb', 'EB', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('eb', $c_i_item->eb, ['class' => 'form-control']) }}
-    </div>
-</div>
-<div class="form-group">
-    {{ Form::label('id_farm', 'Finca', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
+    <div class="col-sm-4">
+        {{ Form::label('id_farm', 'Finca', ['class' => 'control-label']) }}
         {{ Form::select('id_farm', $farms, $c_i_item->id_farm, ['class' => 'form-control', 'placeholder' => 'Seleccione finca']) }}
     </div>
-</div>
-<div class="form-group">
-    {{ Form::label('id_client', 'Cliente', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
+    
+    <div class="col-sm-4">
+        {{ Form::label('id_client', 'Cliente', ['class' => 'control-label']) }}
         {{ Form::select('id_client', $clients, $c_i_item->id_client, ['class' => 'form-control', 'placeholder' => 'Seleccione cliente']) }}
     </div>
-</div>
-<div class="form-group">
-    {{ Form::label('description', 'Descripción', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('description', $c_i_item->description, ['class' => 'form-control']) }}
+    
+    <div class="col-sm-4">
+        {{ Form::label('description', 'Descripción', ['class' => 'control-label']) }}
+        {{ Form::select('description', $product, $c_i_item->description, ['class' => 'form-control']) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('hawb', 'HAWB', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
+    <div class="col-sm-2">
+        {{ Form::label('hb', 'HB', ['class' => 'control-label']) }}
+        {{ Form::number('hb', $c_i_item->hb, ['class' => 'form-control']) }}
+    </div>
+    
+    <div class="col-sm-2">
+        {{ Form::label('qb', 'QB', ['class' => 'control-label']) }}
+        {{ Form::number('qb', $c_i_item->qb, ['class' => 'form-control']) }}
+    </div>
+    
+    <div class="col-sm-2">
+        {{ Form::label('eb', 'EB', ['class' => 'control-label']) }}
+        {{ Form::number('eb', $c_i_item->eb, ['class' => 'form-control']) }}
+    </div>
+    
+    <div class="col-sm-3">
+        {{ Form::label('hawb', 'HAWB', ['class' => 'control-label']) }}
         {{ Form::text('hawb', $c_i_item->hawb, ['class' => 'form-control']) }}
     </div>
-</div>
-<div class="form-group">
-    {{ Form::label('stems', 'Tallos', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('stems', $c_i_item->stems, ['class' => 'form-control']) }}
+    <div class="col-sm-3">
+        {{ Form::label('stems_p_bunches', 'Tallos por bonches', ['class' => 'control-label']) }}
+        {{ Form::select('stems_p_bunches', [
+            '12' => '12',
+            '25' => '25',
+            ], $c_i_item->stems_p_bunches, ['class' => 'form-control grupo', 'id' => 'stems_p_bunches']) }}
     </div>
 </div>
 <div class="form-group">
-    {{ Form::label('bunches', 'Bonches', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::text('bunches', $c_i_item->bunches, ['class' => 'form-control']) }}
+    <div class="col-sm-3">
+        {{ Form::label('stems', 'Tallos', ['class' => 'control-label']) }}
+        {{ Form::number('stems', $c_i_item->stems, ['class' => 'form-control grupo', 'id' => 'stems']) }}
     </div>
-</div>
-<div class="form-group">
-    {{ Form::label('price', 'Precio', ['class' => 'col-sm-4 control-label']) }}
-    <div class="col-sm-6">
+    <div class="col-sm-3">
+        {{ Form::label('bunches', 'Bonches', ['class' => 'control-label']) }}
+        {{ Form::number('bunches', $c_i_item->bunches, ['class' => 'form-control', 'id' => 'bunches']) }}
+    </div>
+    
+    <div class="col-sm-3">
+        {{ Form::label('price', 'Precio', ['class' => 'control-label']) }}
         {{ Form::text('price', $c_i_item->price, ['class' => 'form-control']) }}
     </div>
 </div>
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        $(".grupo").keyup(function()
+        {
+            var stems = $('#stems').val();
+            var stems_p_bunches = $('#stems_p_bunches').val();
+            var bunches = parseFloat(stems) / parseFloat(stems_p_bunches);
+            $('#bunches').val(parseFloat(bunches));
+            console.log(bunches);
+        });
+    });
+</script>
+@endsection

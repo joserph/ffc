@@ -9,7 +9,7 @@
     </div>
     <div class="col-sm-4">
         {{ Form::label('description', 'Descripción', ['class' => 'control-label']) }}
-        {{ Form::text('description', null, ['class' => 'form-control']) }}
+        {{ Form::select('description', $products, null, ['class' => 'form-control', 'placeholder' => 'Seleccione tipo']) }}
     </div>
 </div>
 <div class="form-group">

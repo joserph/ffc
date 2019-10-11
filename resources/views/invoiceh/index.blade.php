@@ -9,10 +9,10 @@
                     <i class="fas fa-file-invoice-dollar"></i> Factura Comercial
                     @can('products.create')
                         @if($id_invoice)
-                            <a href="{{ route('invoiceh.edit', $id_invoice) }}" class="btn btn-sm btn-warning pull-right"><i class="far fa-edit"></i> Editar</a>
-                            <a href="{{ route('comercial-invoice.pdf', $load) }}" target="_blank" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
+                            <a href="{{ route('invoiceh.edit', $id_invoice) }}" class="btn btn-xs btn-warning pull-right"><i class="far fa-edit"></i> Editar</a>
+                            <a href="{{ route('comercial-invoice.pdf', $load) }}" target="_blank" class="btn btn-xs btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                         @else
-                            <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
+                            <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                         @endif
                     @endcan
                     
@@ -72,18 +72,24 @@
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td class="text-center">{{ $item->description }}</td>
+                                        <td class="text-center">
+                                            @foreach ($product_all as $product)
+                                                @if ($item->description == $product->id)
+                                                    {{ strtoupper($product->name) }}
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <td class="text-center">{{ $item->hawb }}</td>
                                         <td class="text-center">{{ $item->stems }}</td>
                                         <td class="text-center">{{ $item->bunches }}</td>
                                         <td class="text-center">{{ number_format($item->price, 2, ',','') }}</td>
                                         <td class="text-center">{{ number_format($item->total, 2, ',','.') }}</td>
                                         <td class="text-center" width="10px">
-                                            <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                            <a href="{{ route('comercialinvoiveitem.edit', $item->id) }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         </td>
                                         <td class="text-center" width="10px">
                                             {!! Form::open(['route' => ['comercialinvoiveitem.destroy', $item->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar item?")']) !!}
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                                                <button class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>

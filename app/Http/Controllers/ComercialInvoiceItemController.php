@@ -7,6 +7,7 @@ use App\ComercialInvoiceItem;
 use App\Load;
 use App\Farm;
 use App\Client;
+use App\Product;
 
 class ComercialInvoiceItemController extends Controller
 {
@@ -73,9 +74,10 @@ class ComercialInvoiceItemController extends Controller
     {
         $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
         $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
+        $product = Product::orderBy('id', 'DESC')->pluck('name', 'id');
         $c_i_item = ComercialInvoiceItem::find($id);
 
-        return view('comercialiitems.edit', compact('c_i_item', 'farms', 'clients'));
+        return view('comercialiitems.edit', compact('c_i_item', 'farms', 'clients', 'product'));
     }
 
     /**
