@@ -79,11 +79,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Curso de Roles
+                    Carquera
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Roles</a>
+                    <a href="#">Documentación</a>
                 </div>
             </div>
         </div>
