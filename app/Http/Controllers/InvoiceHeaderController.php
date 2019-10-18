@@ -103,6 +103,8 @@ class InvoiceHeaderController extends Controller
         $lcompanies = LogisticCompany::get();
         // Mi empresa
         $my_company = Freighter::find(1);
+        // Productos
+        $product_all = Product::all();
         //dd($my_company);
         
         $pdf = PDF::loadView('invoiceh.pdf', 
@@ -111,7 +113,8 @@ class InvoiceHeaderController extends Controller
             'date_load', 
             'invoice_header', 
             'lcompanies', 
-            'my_company'));
+            'my_company',
+            'product_all'));
         
         return $pdf->stream();
     }

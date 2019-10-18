@@ -14,7 +14,7 @@
                         {!! Form::hidden('update_user', \Auth::user()->id) !!}
                         @include('comercialiitems.partials.form2')
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-12">
                                 <button type="submit" class="btn btn-sm btn-warning"><i class="fas fa-sync-alt"></i> Actualizar</button>
                             </div>
                         </div>

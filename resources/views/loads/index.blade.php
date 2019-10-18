@@ -24,7 +24,7 @@
                                     <th class="text-center" width="10px">ID</th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">DOL</th>
-                                    <th class="text-center">Código DOL</th>
+                                    <th class="text-center">Código</th>
                                     <th class="text-center">Fecha</th>
                                     <th colspan="3" class="text-center">Aciones</th>
                                 </tr>

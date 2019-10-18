@@ -73,7 +73,7 @@
                                 <a class="nav-link" href="{{ route('coordinations.index') }}">Coordinaciones</a>
                             </li>
                         @endcan
-                        @can('users.index')
+                        {{--@can('users.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                             </li>
@@ -87,7 +87,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('permissions.index') }}">Permisos</a>
                             </li>
-                        @endcan
+                        @endcan--}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->

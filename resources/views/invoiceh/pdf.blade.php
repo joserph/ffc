@@ -128,7 +128,14 @@
                             @endif
                         @endforeach
                     </td>
-                    <td class="text-center small-letter">{{ $item->description }}</td>
+                    <td class="text-center small-letter">
+                        @foreach ($product_all as $product)
+                            @if ($item->description == $product->id)
+                                {{ strtoupper($product->name) }}
+                            @endif
+                        @endforeach
+                        
+                    </td>
                     <td class="text-center small-letter">{{ $item->hawb }}</td>
                     <td class="text-center small-letter">{{ number_format($item->stems, 0, '','.') }}</td>
                     <td class="text-center small-letter">{{ $item->bunches }}</td>

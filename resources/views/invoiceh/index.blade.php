@@ -187,7 +187,7 @@
                         {!! Form::hidden('id_invoiceh', $id_invoice) !!}
                         @include('comercialiitems.partials.form')
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-12">
                                 <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Agregar</button>
                             </div>
                         </div>

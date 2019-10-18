@@ -37,6 +37,7 @@
     <div class="col-sm-3">
         {{ Form::label('stems_p_bunches', 'Tallos por bonches', ['class' => 'control-label']) }}
         {{ Form::select('stems_p_bunches', [
+            '10' => '10',
             '12' => '12',
             '25' => '25',
             ], $c_i_item->stems_p_bunches, ['class' => 'form-control grupo', 'id' => 'stems_p_bunches']) }}
@@ -54,7 +55,12 @@
     
     <div class="col-sm-3">
         {{ Form::label('price', 'Precio', ['class' => 'control-label']) }}
-        {{ Form::text('price', $c_i_item->price, ['class' => 'form-control']) }}
+        {{ Form::text('price', $c_i_item->price, ['class' => 'form-control grupo']) }}
+    </div>
+    <div class="col-sm-3">
+        {{ Form::label('total', 'Total', ['class' => 'control-label']) }}
+        {{ Form::text('total', $c_i_item->total, ['class' => 'form-control', 'id' => 'total']) }}
+        <span id="helpBlock" class="help-block">En caso de que el total no coincida con la factura "Colocar manualmente".</span>
     </div>
 </div>
 
@@ -67,6 +73,10 @@
             var stems_p_bunches = $('#stems_p_bunches').val();
             var bunches = parseFloat(stems) / parseFloat(stems_p_bunches);
             $('#bunches').val(parseFloat(bunches));
+            // Total
+            var price = $('#price').val();
+            var total = parseFloat(stems) * parseFloat(price);
+            $('#total').val(parseFloat(total));
             console.log(bunches);
         });
     });
