@@ -164,7 +164,9 @@ class InvoiceHeaderController extends Controller
     public function edit($id)
     {
         $invoiceh = InvoiceHeader::find($id);
-        return view('invoiceh.edit', compact('invoiceh'));
+        // Empresas de Logistica
+        $lcompanies = LogisticCompany::orderBy('id', 'DESC')->pluck('name', 'id');
+        return view('invoiceh.edit', compact('invoiceh', 'lcompanies'));
     }
 
     /**

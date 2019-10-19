@@ -1,7 +1,11 @@
+@section('css')
+    <!-- Plugin Chosen -->
+    <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css') }}">
+@endsection
 <div class="form-group">
     <div class="col-sm-4">
         {{ Form::label('id_farm', 'Finca', ['class' => 'control-label']) }}
-        {{ Form::select('id_farm', $farms, $c_i_item->id_farm, ['class' => 'form-control', 'placeholder' => 'Seleccione finca']) }}
+        {{ Form::select('id_farm', $farms, $c_i_item->id_farm, ['class' => 'form-control select-farm', 'placeholder' => 'Seleccione finca']) }}
     </div>
     
     <div class="col-sm-4">
@@ -80,5 +84,10 @@
             console.log(bunches);
         });
     });
+</script>
+<!-- Chosen JavaScript -->
+<script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
+<script>
+    $('.select-farm').chosen();
 </script>
 @endsection

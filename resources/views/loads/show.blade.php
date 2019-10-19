@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{ url('/home') }}">Inicio</a></li>
                 <li><a href="{{ route('loads.index') }}">Contenedor {{ $load->code }}</a></li>
-                <li class="active">Paletas</li>
+                <li class="active">Detalles del contenedor</li>
             </ol>
         <div class="col-md-4">
             <div class="panel panel-primary">

@@ -21,13 +21,13 @@
                     <ol class="breadcrumb">
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
                         <li><a href="{{ route('loads.index') }}">Contenedor {{ $code }}</a></li>
-                        <li><a href="{{ route('loads.show', $load) }}">Paletas</a></li>
+                        <li><a href="{{ route('loads.show', $load) }}">Detalles del contenedor</a></li>
                         <li class="active">Factura Comercial</li>
                     </ol>
                     
                     <!-- List group -->
                     <ul class="list-group">
-                        <li class="list-group-item"><strong>Fecha:</strong> {{ $date_load }}</li>
+                        <li class="list-group-item"><strong>Fecha:</strong> {{ date('d-m-Y', strtotime($date_load)) }}</li>
                         <li class="list-group-item"><strong>BL N°:</strong> {{ $bl }}</li>
                         <li class="list-group-item"><strong>Country INVOICE N°:</strong> {{ $invoice_n }}</li>
                         <li class="list-group-item"><strong>Carrier:</strong> {{ $carrier }}</li>

@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <i class="fas fa-truck-loading"></i> Carguera
                     @can('loads.create')
-                        <a href="{{ route('loads.create') }}" class="btn btn-sm btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevos contenedor"><i class="fas fa-plus-circle"></i> Agregar</a>
+                        <a href="{{ route('loads.create') }}" class="btn btn-xs btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevos contenedor"><i class="fas fa-plus-circle"></i> Agregar</a>
                     @endcan
                 </div>
 
@@ -39,18 +39,18 @@
                                         <td class="text-center">{{ date('m-d-Y', strtotime($item->date)) }}</td>
                                         <td width="10px">
                                             @can('loads.show')
-                                                <a href="{{ route('loads.show', $item->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles del cliente"><i class="fas fa-eye"></i> Ver</a>
+                                                <a href="{{ route('loads.show', $item->id) }}" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles del contenedor"><i class="fas fa-eye"></i> Ver</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('loads.edit')
-                                                <a href="{{ route('loads.edit', $item->id) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles del cliente"><i class="fas fa-edit"></i> Editar</a>
+                                                <a href="{{ route('loads.edit', $item->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar contenedor"><i class="fas fa-edit"></i> Editar</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('loads.destroy')
                                                 {!! Form::open(['route' => ['loads.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar cliente', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar contenedor?")']) !!}
+                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar contenedor', 'class' => 'btn btn-xs btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar contenedor?")']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         </td>
