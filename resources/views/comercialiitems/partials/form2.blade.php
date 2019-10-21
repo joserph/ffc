@@ -10,12 +10,12 @@
     
     <div class="col-sm-4">
         {{ Form::label('id_client', 'Cliente', ['class' => 'control-label']) }}
-        {{ Form::select('id_client', $clients, $c_i_item->id_client, ['class' => 'form-control', 'placeholder' => 'Seleccione cliente']) }}
+        {{ Form::select('id_client', $clients, $c_i_item->id_client, ['class' => 'form-control select-client', 'placeholder' => 'Seleccione cliente']) }}
     </div>
     
     <div class="col-sm-4">
         {{ Form::label('description', 'Descripción', ['class' => 'control-label']) }}
-        {{ Form::select('description', $product, $c_i_item->description, ['class' => 'form-control']) }}
+        {{ Form::select('description', $product, $c_i_item->description, ['class' => 'form-control select-product']) }}
     </div>
 </div>
 <div class="form-group">
@@ -89,5 +89,12 @@
 <script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
 <script>
     $('.select-farm').chosen();
+    $('.select-client').chosen();
+    $('.select-product').chosen();
+    $('#modal').on('shown.bs.modal', function () {
+        $('.select-farm', this).chosen();
+        $('.select-client', this).chosen();
+        $('.select-product', this).chosen();
+    });
 </script>
 @endsection

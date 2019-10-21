@@ -46,6 +46,9 @@ class ComercialInvoiceItemController extends Controller
         $c_i_item->fulls = ($c_i_item->hb * 0.50) + ($c_i_item->qb * 0.25) + ($c_i_item->eb * 0.125);
         $c_i_item->description = strtoupper($c_i_item->description);
         //$c_i_item->total = $c_i_item->stems * $c_i_item->price;
+        // Farms
+        $farm = Farm::select('name')->where('id', '=', $c_i_item->id_farm)->first();
+        $c_i_item->farms = $farm->name;
         $c_i_item->save();
         $load = Load::where('id', '=', $c_i_item->id_load)->get();
 
@@ -95,6 +98,9 @@ class ComercialInvoiceItemController extends Controller
         $c_i_item->fulls = ($c_i_item->hb * 0.50) + ($c_i_item->qb * 0.25) + ($c_i_item->eb * 0.125);
         $c_i_item->description = strtoupper($c_i_item->description);
         //$c_i_item->total = $c_i_item->stems * $c_i_item->price;
+        // Farms
+        $farm = Farm::select('name')->where('id', '=', $c_i_item->id_farm)->first();
+        $c_i_item->farms = $farm->name;
         $c_i_item->save();
         $load = Load::where('id', '=', $c_i_item->id_load)->get();
 

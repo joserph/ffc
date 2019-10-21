@@ -50,7 +50,7 @@ class InvoiceHeaderController extends Controller
         // Clientes
         $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
         // Comercial Invoice Items
-        $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
+        $comercial_invoice_items = ComercialInvoiceItem::orderby('farms', 'ASC')->where('id_load', '=', $load)->get();
         // Empresas de Logistica
         $lcompanies = LogisticCompany::orderBy('id', 'DESC')->pluck('name', 'id');
         // Mi empresa
@@ -92,9 +92,10 @@ class InvoiceHeaderController extends Controller
         $load = $load_code[0]->id;
         
         // Comercial Invoice Items
-        $comercial_invoice_items = ComercialInvoiceItem::where('id_load', '=', $load)->get();
+        $comercial_invoice_items = ComercialInvoiceItem::orderby('farms', 'ASC')->where('id_load', '=', $load)->get();
+        //dd($comercial_invoice_items);
         // Fincas
-        $farms_all = Farm::all();
+        $farms_all = Farm::orderby('name', 'DESC')->get();
         // Fecha
         $date_load = $load_code[0]->date;
         // Cabecera de la factura
