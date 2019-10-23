@@ -117,6 +117,8 @@
                     $pcs+= $item->pieces;
                     $stems+= $item->stems;
                     $total+= $item->total;
+
+                    
                 @endphp
                 <tr>
                     <td class="text-center small-letter">{{ number_format($item->fulls, 2, '.','') }}</td>

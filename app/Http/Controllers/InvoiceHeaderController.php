@@ -51,6 +51,9 @@ class InvoiceHeaderController extends Controller
         $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
         // Comercial Invoice Items
         $comercial_invoice_items = ComercialInvoiceItem::orderby('farms', 'ASC')->where('id_load', '=', $load)->get();
+        //CREAR UNA NUEVA TABLA PARA GUARDAR LOS VALORES AGRUPADOS
+        
+        
         // Empresas de Logistica
         $lcompanies = LogisticCompany::orderBy('id', 'DESC')->pluck('name', 'id');
         // Mi empresa
