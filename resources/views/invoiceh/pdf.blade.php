@@ -38,6 +38,21 @@
         .farms{
             width: 300px;
         }
+        
+        table.sinb{
+            margin: 0 auto;
+            width: 60%;
+        }
+        table.sinb, th, td{
+            border: 1px solid black;
+            height: 20px;
+        }
+        .text-white{
+            color: #fff;
+        }
+        .firma{
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -154,6 +169,40 @@
                 <th class="text-center small-letter">{{ number_format($stems, 0, '','.') }}</th>
                 <th colspan="2" class="text-center small-letter"></th>
                 <th class="text-center small-letter">{{ number_format($total, 2, ',','.') }}</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <br>
+    <table class="sinb">
+        <tbody>
+            <tr>
+                <td class="small-letter text-center">Name and title of person preparing invoice</td>
+                <td class="small-letter text-center">Freight forwarder / Agencia de carga</td>
+            </tr>
+            <tr>
+                <td class="small-letter text-white">@foreach ($lcompanies as $item)
+                        @if($invoice_header->id_logistics_company == $item->id)
+                            {{ strtoupper($item->name) }}
+                        @endif
+                    @endforeach</td>
+                <td class="small-letter text-center">@foreach ($lcompanies as $item)
+                        @if($invoice_header->id_logistics_company == $item->id)
+                            {{ strtoupper($item->name) }}
+                        @endif
+                    @endforeach</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="firma"></td>
+                <td class="firma"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="small-letter text-center">SIGNATURE</th>
+                <th class="small-letter text-center">NANDINA</th>
             </tr>
         </tfoot>
     </table>
