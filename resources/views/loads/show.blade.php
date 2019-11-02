@@ -71,6 +71,27 @@
                 </a>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fas fa-file-invoice-dollar fa-6x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <h3>COORDINACIÓN</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ route('coordinations.index', $load->code) }}" data-toggle="tooltip" data-placement="bottom" title="Factura Comercial">
+                    <div class="panel-footer">
+                        <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
