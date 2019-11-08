@@ -25,18 +25,26 @@ class CoordinationController extends Controller
         // Load
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
+        
         // Coordinationes
-        $coordinations = Coordination::paginate();
+        $coordinations = Coordination::where('id_load', '=', $load)->orderBy('farms', 'ASC')->get();
         // Fincas
-        $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
+        $farms = Farm::orderBy('name', 'ASC')->pluck('name', 'id');
         $farms_all = Farm::all();
         // Clientes
-        $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
-        $clients_all = Client::all();
-        // Productos
-        $products = Product::orderBy('id', 'DESC')->pluck('name', 'id');
-        $product_all = Product::all();
+        $clients = Client::orderBy('name', 'ASC')->pluck('name', 'id');
 
+        $coordinations2 = Coordination::select('id_client')->groupBy('id_client')->get();
+        foreach ($coordinations2 as $item)
+        {
+            $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
+        }
+
+        // Productos
+        $products = Product::orderBy('name', 'ASC')->pluck('name', 'id');
+        $product_all = Product::all();
+        //dd($clients_all);
+        
         return view('coordinations.index', compact(
             'coordinations',
             'load',
