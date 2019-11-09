@@ -18,6 +18,7 @@ class CoordinationController extends Controller
      */
     public function index()
     {
+        //$clients_all[] = 0;
         // Codigo
         $url= $_SERVER["REQUEST_URI"];
         $div = explode("?", $url);
@@ -33,17 +34,25 @@ class CoordinationController extends Controller
         $farms_all = Farm::all();
         // Clientes
         $clients = Client::orderBy('name', 'ASC')->pluck('name', 'id');
-
-        $coordinations2 = Coordination::select('id_client')->groupBy('id_client')->get();
-        foreach ($coordinations2 as $item)
+        
+        if($coordinations)
         {
-            $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
+            $coordinations2 = Coordination::select('id_client')->groupBy('id_client')->get();
+            foreach ($coordinations2 as $item)
+            {
+                $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
+            }
+            
+        }else{
+            
+            $clients_all[] = null;
         }
-
+        
+        dd($clients_all);
         // Productos
         $products = Product::orderBy('name', 'ASC')->pluck('name', 'id');
         $product_all = Product::all();
-        //dd($clients_all);
+        
         
         return view('coordinations.index', compact(
             'coordinations',
@@ -77,8 +86,10 @@ class CoordinationController extends Controller
         $coordi = Coordination::create($request->all());
         $coordi->pieces = $coordi->fb + $coordi->hb + $coordi->qb + $coordi->eb;
         $coordi->fulls = ($coordi->fb * 1) + ($coordi->hb * 0.50) + ($coordi->qb * 0.25) + ($coordi->eb * 0.125);
-        $coordi->description = strtoupper($coordi->description);
         
+        $description = Product::select('name')->where('id', '=', $coordi->description)->first();
+        //dd($description->name);
+        $coordi->description = $description->name;
         $farm = Farm::select('name')->where('id', '=', $coordi->id_farm)->first();
         $coordi->farms = $farm->name;
         $coordi->save();
@@ -107,7 +118,17 @@ class CoordinationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $coordination = Coordination::find($id);
+        $farms = Farm::orderBy('name', 'ASC')->pluck('name', 'id');
+        $clients = Client::orderBy('name', 'ASC')->pluck('name', 'id');
+        $products = Product::orderBy('name', 'ASC')->pluck('name', 'id');
+
+        return view('coordinations.edit', compact(
+            'coordination',
+            'farms',
+            'clients',
+            'products'
+        ));
     }
 
     /**

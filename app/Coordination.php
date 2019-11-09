@@ -21,7 +21,16 @@ class Coordination extends Model
         'fulls',    
         'total',
         'id_user',
-        'update_user'
+        'update_user',
+        'description',
+        'farms',
+        'pieces_r',
+        'fb_r',
+        'hb_r',
+        'qb_r',
+        'eb_r',
+        'fulls_r',
+        'missing'
     ];
 
     public function user()
