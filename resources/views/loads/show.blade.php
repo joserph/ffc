@@ -5,8 +5,8 @@
     <div class="row">
             <ol class="breadcrumb">
                 <li><a href="{{ url('/home') }}">Inicio</a></li>
-                <li><a href="{{ route('loads.index') }}">Contenedor {{ $load->code }}</a></li>
-                <li class="active">Detalles del contenedor</li>
+                <li><a href="{{ route('loads.index') }}">Contenedores </a></li>
+                <li class="active">Contenedor {{ $load->code }}</li>
             </ol>
         <div class="col-md-4">
             <div class="panel panel-primary">
@@ -16,7 +16,7 @@
                             <i class="fas fa-pallet fa-6x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <h3>PALETAS</h3>
+                            <h4>PALETAS</h4>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <i class="fas fa-map-marked-alt fa-6x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <h3>CROQUIS CONTENEDOR</h3>
+                            <h4>CROQUIS CONTENEDOR</h4>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <i class="fas fa-file-invoice-dollar fa-6x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <h3>FACTURA COMERCIAL</h3>
+                            <h4>FACTURA COMERCIAL</h4>
                         </div>
                     </div>
                 </div>
@@ -76,10 +76,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fas fa-file-invoice-dollar fa-6x"></i>
+                            <i class="fas fa-cogs fa-6x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <h3>COORDINACIÓN</h3>
+                            <h4>COORDINACIÓN</h4>
                         </div>
                     </div>
                 </div>

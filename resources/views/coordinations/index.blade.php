@@ -6,21 +6,23 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fas fa-spa"></i> Coordinacones
+                    <i class="fas fa-cogs"></i> Coordinacones
                     @can('products.create')
-                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal2" data-toggle="tooltip" data-placement="top" title="Agregar coordinación"><i class="fas fa-plus-circle"></i> Agregar item</button>
+                    <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal2" data-toggle="tooltip" data-placement="top" title="Agregar coordinación"><i class="fas fa-plus-circle"></i> Agregar item</button>
                     @endcan
                 </div>
 
                 <div class="panel-body">
                     <ol class="breadcrumb">
                         <li><a href="{{ url('/home') }}">Inicio</a></li>
-                        <li class="active">Fincas</li>
+                        <li><a href="{{ route('loads.index') }}">Contenedores </a></li>
+                        <li><a href="{{ route('loads.index') }}/{{ $load }}">Contenedor {{ $code }}</a> </li>
+                        <li class="active">Coordcaciones</li>
                     </ol>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead>
-                                    <tr>
+                                    <tr class="info">
                                         <th class="text-center"></th>
                                         <th class="text-center"></th>
                                         <th class="text-center"></th>
@@ -52,7 +54,7 @@
                                     @endphp
                                 @foreach($clients_all as $client)
                                     <thead>
-                                        <tr>
+                                        <tr class="success">
                                             <th colspan="18" class="text-center">{{ strtoupper($client->name) }}</th>
                                         </tr>
                                     </thead>
@@ -92,20 +94,20 @@
                                                     <td class="text-center">{{ $item->eb_r }}</td>
                                                     <td class="text-center">{{ $item->pieces_r }}</td>
                                                     <td class="text-center">{{ $item->missing }}</td>
-                                                    <td width="10px">
+                                                    <!--<td width="10px">
                                                         @can('coordinations.show')
                                                             <a href="{{ route('coordinations.show', $item->id) }}" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles de la finca"><i class="fas fa-eye"></i></a>
                                                         @endcan
-                                                    </td>
+                                                    </td>-->
                                                     <td width="10px">
                                                         @can('coordinations.edit')
-                                                            <a href="{{ route('coordinations.edit', $item->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles de la finca"><i class="fas fa-edit"></i></a>
+                                                            <a href="{{ route('coordinations.edit', $item->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles de la coodinación"><i class="fas fa-edit"></i></a>
                                                         @endcan
                                                     </td>
                                                     <td width="10px">
                                                         @can('coordinations.destroy')
                                                             {!! Form::open(['route' => ['coordinations.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                                {!! Form::button('<i class="fas fa-trash-alt"></i> ' . '', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-xs btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
+                                                                {!! Form::button('<i class="fas fa-trash-alt"></i> ' . '', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar coodinación', 'class' => 'btn btn-xs btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar coodinación?")']) !!}
                                                             {!! Form::close() !!}
                                                         @endcan
                                                     </td>
