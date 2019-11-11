@@ -20,7 +20,7 @@
                         <li class="active">Coordcaciones</li>
                     </ol>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover table-condensed">
                                 <thead>
                                     <tr class="info">
                                         <th class="text-center"></th>
