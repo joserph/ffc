@@ -1,13 +1,22 @@
+@section('css')
+    <!-- Plugin Chosen -->
+    <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css') }}">
+    <style>
+    .chosen-container{
+        width: 100% !important;
+    }
+    </style>
+@endsection
 <div class="form-group">
     {{ Form::label('id_farm', 'Finca', ['class' => 'col-sm-2 control-label']) }}
-    <div class="col-sm-6">
-        {{ Form::select('id_farm', $farms, null, ['class' => 'form-control', 'placeholder' => 'Seleccione finca']) }}
+    <div class="col-sm-10">
+        {{ Form::select('id_farm', $farms, null, ['class' => 'form-control select-farm', 'placeholder' => 'Seleccione finca']) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('id_client', 'Cliente', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-6">
-        {{ Form::select('id_client', $clients, null, ['class' => 'form-control', 'placeholder' => 'Seleccione cliente']) }}
+        {{ Form::select('id_client', $clients, null, ['class' => 'form-control select-client', 'placeholder' => 'Seleccione cliente']) }}
     </div>
 </div>
 
@@ -16,19 +25,19 @@
 <div class="form-group">
     {{ Form::label('hb', 'HB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::text('hb', 0, ['class' => 'form-control grupo', 'id' => 'hb', 'value' => '0']) }}
+        {{ Form::number('hb', 0, ['class' => 'form-control grupo', 'id' => 'hb', 'value' => '0']) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('qb', 'QB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::text('qb', 0, ['class' => 'form-control grupo', 'id' => 'qb']) }}
+        {{ Form::number('qb', 0, ['class' => 'form-control grupo', 'id' => 'qb']) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('eb', 'EB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::text('eb', 0, ['class' => 'form-control grupo', 'id' => 'eb']) }}
+        {{ Form::number('eb', 0, ['class' => 'form-control grupo', 'id' => 'eb']) }}
     </div>
 </div>
 <div class="form-group">
@@ -49,6 +58,16 @@
             $('#total').val(parseFloat(total));
             console.log(total);
         });
+    });
+</script>
+<!-- Chosen JavaScript -->
+<script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
+<script>
+    $('.select-farm').chosen();
+    $('.select-client').chosen();
+    $('#modal').on('shown.bs.modal', function () {
+        $('.select-farm', this).chosen();
+        $('.select-client', this).chosen();
     });
 </script>
 @endsection

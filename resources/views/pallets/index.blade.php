@@ -8,9 +8,9 @@
                 <div class="panel-heading">
                     <i class="fas fa-pallet"></i> Paletas
                     @can('products.create')
-                        <button type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
                     @endcan
-                    <a href="{{ route('pallets.pdf') }}" class="btn btn-sm btn-info pull-right"><i class="far fa-file-pdf"></i></a>
+                    <a href="{{ route('pallets.pdf') }}" class="btn btn-xs btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                 </div>
                 <div class="panel-body">
                     <ol class="breadcrumb">
@@ -26,7 +26,7 @@
                                 <i class="fas fa-pallet"></i> Paleta # {{ $item->number }}
                                 <input type="hidden" name="prueba" id="prueba_{{ $indexKey }}" value="{{ $item->number }}">
                                 @can('products.create')
-                                    <a href="{{ route('palletitems.create', $item->number) }}" class="btn btn-sm btn-info pull-right"><i class="fas fa-plus-circle"></i> Agregar</a>
+                                    <a href="{{ route('palletitems.create', $item->number) }}" class="btn btn-xs btn-info pull-right"><i class="fas fa-plus-circle"></i> Agregar</a>
                                 @endcan
                             </div>
                             
@@ -76,11 +76,11 @@
                                                         <td class="text-center">{{ $item2->eb }}</td>
                                                         <td class="text-center">{{ $item2->quantity }}</td>
                                                         <td class="text-center" width="10px">
-                                                            <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                            <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                                         </td>
                                                         <td class="text-center" width="10px">
                                                             {!! Form::open(['route' => ['palletitems.destroy', $item2->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar item de paleta?")']) !!}
-                                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                                                                <button class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                                             {!! Form::close() !!}
                                                         </td>
                                                     </tr>
@@ -103,7 +103,7 @@
                                 @if(($counter - 1) == $item->counter)
                                     @can('pallets.destroy')
                                         {!! Form::open(['route' => ['pallets.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                            {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-sm btn-danger pull-right', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
+                                            {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-xs btn-danger pull-right', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
                                         {!! Form::close() !!}
                                     @endcan
                                 @endif

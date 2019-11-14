@@ -30,8 +30,8 @@ class PalletItemController extends Controller
     public function create($id)
     {
         $palletitem = $id;
-        $farms = Farm::orderBy('id', 'DESC')->pluck('name', 'id');
-        $clients = Client::orderBy('id', 'DESC')->pluck('name', 'id');
+        $farms = Farm::orderBy('name', 'ASC')->pluck('name', 'id');
+        $clients = Client::orderBy('name', 'ASC')->pluck('name', 'id');
         $pallets = Pallet::select('id')->where('number', '=', $id)->get();
         $id_pallet = $pallets[0]->id; 
 
