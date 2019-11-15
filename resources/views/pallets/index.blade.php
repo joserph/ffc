@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <i class="fas fa-pallet"></i> Paletas
                     @can('products.create')
-                        <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar</button>
+                        <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar Paleta</button>
                     @endcan
                     <a href="{{ route('pallets.pdf') }}" class="btn btn-xs btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                 </div>
@@ -26,13 +26,13 @@
                                 <i class="fas fa-pallet"></i> Paleta # {{ $item->number }}
                                 <input type="hidden" name="prueba" id="prueba_{{ $indexKey }}" value="{{ $item->number }}">
                                 @can('products.create')
-                                    <a href="{{ route('palletitems.create', $item->number) }}" class="btn btn-xs btn-info pull-right"><i class="fas fa-plus-circle"></i> Agregar</a>
+                                    <a href="{{ route('palletitems.create', $item->number) }}" class="btn btn-xs btn-info pull-right" data-toggle="tooltip" data-placement="top" title="Agregar item de paleta"><i class="fas fa-plus-circle"></i> Agregar</a>
                                 @endcan
                             </div>
                             
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-condensed table-hover">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">Finca</th>
@@ -76,11 +76,11 @@
                                                         <td class="text-center">{{ $item2->eb }}</td>
                                                         <td class="text-center">{{ $item2->quantity }}</td>
                                                         <td class="text-center" width="10px">
-                                                            <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                            <a href="{{ route('palletitems.edit', $item2->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar item de paleta"><i class="fas fa-edit"></i> Editar</a>
                                                         </td>
                                                         <td class="text-center" width="10px">
                                                             {!! Form::open(['route' => ['palletitems.destroy', $item2->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar item de paleta?")']) !!}
-                                                                <button class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                                                                <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar item de paleta"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                                             {!! Form::close() !!}
                                                         </td>
                                                     </tr>
