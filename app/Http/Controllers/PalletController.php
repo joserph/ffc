@@ -23,7 +23,7 @@ class PalletController extends Controller
         $url= $_SERVER["REQUEST_URI"];
         $div = explode("?", $url);
         $code = $div[1];
-        $pallets = Pallet::paginate();
+        $pallets = Pallet::orderBy('id', '=', 'DESC')->get();
         
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;

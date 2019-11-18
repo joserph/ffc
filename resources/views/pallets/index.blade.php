@@ -99,7 +99,7 @@
                                     </table>
                                 </div>
 
-                                <hr>
+                                
                                 @if(($counter - 1) == $item->counter)
                                     @can('pallets.destroy')
                                         {!! Form::open(['route' => ['pallets.destroy', $item->id], 'method' => 'DELETE']) !!}

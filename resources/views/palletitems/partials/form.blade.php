@@ -25,19 +25,19 @@
 <div class="form-group">
     {{ Form::label('hb', 'HB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::number('hb', 0, ['class' => 'form-control grupo', 'id' => 'hb', 'value' => '0']) }}
+        {{ Form::text('hb', 0, ['class' => 'form-control grupo', 'id' => 'hb', 'value' => '0']) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('qb', 'QB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::number('qb', 0, ['class' => 'form-control grupo', 'id' => 'qb']) }}
+        {{ Form::text('qb', 0, ['class' => 'form-control grupo', 'id' => 'qb']) }}
     </div>
 </div>
 <div class="form-group">
     {{ Form::label('eb', 'EB', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-2">
-        {{ Form::number('eb', 0, ['class' => 'form-control grupo', 'id' => 'eb']) }}
+        {{ Form::text('eb', 0, ['class' => 'form-control grupo', 'id' => 'eb']) }}
     </div>
 </div>
 <div class="form-group">
