@@ -120,7 +120,18 @@ class PalletItemController extends Controller
     public function update(AddPalletItemRequest $request, $id)
     {
         $palletitem = PalletItem::find($id);
+        
+        
+        
         $palletitem->update($request->all());
+        if($request->piso == null)
+        {
+            //dd($request->piso);
+            $palletitem->piso = 0;
+        }else{
+            $palletitem->piso = 1;
+        }
+        $palletitem->save();
 
         // Total paleta
         $total_pallet = PalletItem::where('id_pallet', '=', $palletitem->id_pallet)->sum('quantity');

@@ -57,7 +57,7 @@
                                                     $total+=$item2->quantity;
                                                 @endphp
                                                     <tr>
-                                                        <td class="text-center">
+                                                        <td>
                                                             @foreach ($farms as $farm)
                                                                 @if($item2->id_farm == $farm->id)
                                                                     {{ $farm->name }}
@@ -67,7 +67,7 @@
                                                         <td class="text-center">
                                                             @foreach ($clients as $client)
                                                                 @if($item2->id_client == $client->id)
-                                                                    {{ $client->name }}
+                                                                    {{ strtoupper($client->name) }}
                                                                 @endif
                                                             @endforeach
                                                         </td>

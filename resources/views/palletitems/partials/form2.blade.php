@@ -46,6 +46,12 @@
         {{ Form::number('quantity', $palletitems->quantity, ['class' => 'form-control', 'id' => 'total', 'readonly']) }}
     </div>
 </div>
+<div class="form-group">
+    {{ Form::label('piso', 'Piso', ['class' => 'col-sm-2 control-label']) }}
+    <div class="col-sm-2">
+        {{ Form::checkbox('piso', $palletitems->piso) }}
+    </div>
+</div>
 @section('scripts')
 <script>
     $(document).ready(function(){
