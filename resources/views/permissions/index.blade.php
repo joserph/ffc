@@ -8,12 +8,12 @@
                 <div class="panel-heading">
                     Permisos
                     @can('permissions.create')
-                        <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+                        <a href="{{ route('permissions.create') }}" class="btn btn-xs btn-primary pull-right"><i class="fas fa-plus-circle"></i> Crear</a>
                     @endcan
                 </div>
 
                 <div class="panel-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
                                 <th width="10px">ID</th>
@@ -30,18 +30,18 @@
                                     <td>{{ $item->slug }}</td>
                                     <td width="10px">
                                         @can('permissions.show')
-                                            <a href="{{ route('permissions.show', $item->id) }}" class="btn btn-sm btn-default">Ver</a>
+                                            <a href="{{ route('permissions.show', $item->id) }}" class="btn btn-xs btn-default"><i class="fas fa-eye"></i> Ver</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('permissions.edit')
-                                            <a href="{{ route('permissions.edit', $item->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="{{ route('permissions.edit', $item->id) }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('permissions.destroy')
                                             {!! Form::open(['route' => ['permissions.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                <button class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             {!! Form::close() !!}
                                         @endcan
                                     </td>
