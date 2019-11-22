@@ -16,7 +16,7 @@
                     <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th width="10px">ID</th>
+                                
                                 <th>Nombre</th>
                                 <th>Slug</th>
                                 <th colspan="3">&nbsp;</th>
@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach ($permissions as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td width="10px">

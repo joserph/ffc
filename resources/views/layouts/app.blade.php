@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Fresh Flower Cargo') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -69,12 +69,12 @@
                                 <a class="nav-link" href="{{ route('loads.index') }}">Carguera</a>
                             </li>
                         @endcan
-                        @can('coordinations.index')
+                        {{--@can('coordinations.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('coordinations.index') }}">Coordinaciones</a>
                             </li>
                         @endcan
-                        {{--@can('users.index')
+                        @can('users.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                             </li>
