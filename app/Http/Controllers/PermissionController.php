@@ -41,7 +41,7 @@ class PermissionController extends Controller
     {
         $permission = Permission::create($request->all());
 
-        return redirect()->route('permissions.edit', $permission->id)
+        return redirect()->route('permissions.index')
             ->with('info', 'Permiso Guardado con exito');
     }
 
