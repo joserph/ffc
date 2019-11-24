@@ -3,28 +3,30 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="far fa-building fa-6x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <h3>MI EMPRESA</h3>
+        @can('freighters.index')
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="far fa-building fa-6x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h3>MI EMPRESA</h3>
+                            </div>
                         </div>
                     </div>
+                    <a href="{{ route('freighters.index') }}" data-toggle="tooltip" data-placement="bottom" title="Mi empresa">
+                        <div class="panel-body">
+                            <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <a href="{{ route('freighters.index') }}" data-toggle="tooltip" data-placement="bottom" title="Mi empresa">
-                    <div class="panel-body">
-                        <span class="pull-left"><i class="fa fa-eye fa-fw"></i> Ver Detalles</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
             </div>
-        </div>
-
+        @endcan
+        @can('logisticscompany.index')
         <div class="col-md-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -46,7 +48,8 @@
                 </a>
             </div>
         </div>
-        
+        @endcan
+        @can('clients.index')
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -68,7 +71,8 @@
                 </a>
             </div>
         </div>
-
+        @endcan
+        @can('farms.index')
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -90,7 +94,8 @@
                 </a>
             </div>
         </div>
-
+        @endcan
+        @can('products.index')
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -112,7 +117,8 @@
                 </a>
             </div>
         </div>
-
+        @endcan
+        @can('loads.index')
         <div class="col-md-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -134,7 +140,7 @@
                 </a>
             </div>
         </div>
-        
+        @endcan
     </div>
 </div>
 @endsection

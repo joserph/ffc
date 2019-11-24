@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-condensed table-hover">
                         <thead>
                             <tr>
                                 <th width="10px">ID</th>
@@ -25,18 +25,18 @@
                                     <td>{{ $item->name }}</td>
                                     <td width="10px">
                                         @can('users.show')
-                                            <a href="{{ route('users.show', $item->id) }}" class="btn btn-sm btn-default">Ver</a>
+                                            <a href="{{ route('users.show', $item->id) }}" class="btn btn-xs btn-default">Ver</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('users.edit')
-                                            <a href="{{ route('users.edit', $item->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="{{ route('users.edit', $item->id) }}" class="btn btn-xs btn-warning">Editar</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('users.destroy')
-                                            {!! Form::open(['route' => ['users.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                            {!! Form::open(['route' => ['users.destroy', $item->id], 'method' => 'DELETE', 'onclick' => 'return confirm("¿Seguro de eliminar el usuario?")']) !!}
+                                                <button class="btn btn-xs btn-danger">Eliminar</button>
                                             {!! Form::close() !!}
                                         @endcan
                                     </td>

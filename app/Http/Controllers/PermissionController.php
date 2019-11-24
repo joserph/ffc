@@ -79,7 +79,7 @@ class PermissionController extends Controller
         // Actualizamos el usuario
         $permission->update($request->all());
 
-        return redirect()->route('permissions.edit', $permission->id)
+        return redirect()->route('permissions.index', $permission->id)
             ->with('info', 'Permiso Actualizado con exito');
     }
 

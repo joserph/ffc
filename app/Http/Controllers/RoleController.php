@@ -22,7 +22,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::orderBy('slug', 'ASC')->get();
 
         return view('roles.create', compact('permissions'));
     }
@@ -40,7 +40,7 @@ class RoleController extends Controller
         // Actualizas roles
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
             ->with('info', 'Role Guardado con exito');
     }
 
@@ -63,7 +63,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions = Permission::get();
+        $permissions = Permission::orderBy('slug', 'ASC')->get();
         return view('roles.edit', compact('role', 'permissions'));
     }
 
@@ -82,7 +82,7 @@ class RoleController extends Controller
         // Actualizas roles
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
             ->with('info', 'Role Actualizado con exito');
     }
 

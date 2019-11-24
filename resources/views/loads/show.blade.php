@@ -8,6 +8,7 @@
                 <li><a href="{{ route('loads.index') }}">Contenedores </a></li>
                 <li class="active">Contenedor {{ $load->code }}</li>
             </ol>
+        @can('pallets.index')
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -29,6 +30,8 @@
                 </a>
             </div>
         </div>
+        @endcan
+        @can('sketches.index')
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -50,6 +53,8 @@
                 </a>
             </div>
         </div>
+        @endcan
+        @can('invoiceh.index')
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -71,6 +76,8 @@
                 </a>
             </div>
         </div>
+        @endcan
+        @can('coordinations.index')
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -92,6 +99,7 @@
                 </a>
             </div>
         </div>
+        @endcan
     </div>
 </div>
 @endsection
