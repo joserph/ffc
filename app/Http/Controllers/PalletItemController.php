@@ -54,6 +54,10 @@ class PalletItemController extends Controller
     public function store(AddPalletItemRequest $request)
     {
         $palletitem = PalletItem::create($request->all());
+        $farm = Farm::select('name')->where('id', '=', $palletitem->id_farm)->first();
+        $palletitem->farms = $farm->name;
+        $palletitem->save();
+        
         $pallet = Pallet::where('id', '=', $palletitem->id_pallet)->get();
         $load = Load::where('id', '=', $pallet[0]->id_load)->get();
 
@@ -121,8 +125,6 @@ class PalletItemController extends Controller
     {
         $palletitem = PalletItem::find($id);
         
-        
-        
         $palletitem->update($request->all());
         if($request->piso == null)
         {
@@ -131,6 +133,8 @@ class PalletItemController extends Controller
         }else{
             $palletitem->piso = 1;
         }
+        $farm = Farm::select('name')->where('id', '=', $palletitem->id_farm)->first();
+        $palletitem->farms = $farm->name;
         $palletitem->save();
 
         // Total paleta
@@ -138,6 +142,9 @@ class PalletItemController extends Controller
         //dd($total_pallet);
         $pallet_update = Pallet::find($palletitem->id_pallet);
         $pallet_update->quantity = $total_pallet;
+        
+        
+        //dd($pallet_update->farms);
         $pallet_update->save();
 
         $palletitemsCode = PalletItem::select('id_pallet')->where('id', '=', $id)->get();

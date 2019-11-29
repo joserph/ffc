@@ -10,7 +10,7 @@
                     @can('products.create')
                         <button type="button" class="btn btn-xs btn-primary pull-right" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Agregar nuevas paletas"><i class="fas fa-plus-circle"></i> Agregar Paleta</button>
                     @endcan
-                    <a href="{{ route('pallets.pdf') }}" class="btn btn-xs btn-info pull-right"><i class="far fa-file-pdf"></i></a>
+                    <a href="{{ route('pallets.pdf', $code) }}" target="_blank" class="btn btn-xs btn-info pull-right"><i class="far fa-file-pdf"></i></a>
                 </div>
                 <div class="panel-body">
                     <ol class="breadcrumb">

@@ -10,22 +10,35 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>COUNTER</th>
-                <th>NUMBER</th>
-                <th>QUANTITY</th>
+                <th>Exporter</th>
+                <th>Hawb</th>
+                <th>PCS</th>
+                <th>BXS</th>
+                <th>FB</th>
+                <th>HB</th>
+                <th>QB</th>
+                <th>EB</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($pallets as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->counter }}</td>
-                    <td>{{ $item->number }}</td>
-                    <td>{{ $item->quantity }}</td>
+        @foreach($clients_all as $client)
+            <thead>
+                <tr class="success">
+                    <th colspan="8" class="text-center">{{ strtoupper($client->name) }}</th>
                 </tr>
-            @endforeach
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach ($pallet_items as $item)
+                    @if($item->id_client == $client->id)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->counter }}</td>
+                            <td>{{ $item->number }}</td>
+                            <td>{{ $item->quantity }}</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        @endforeach
     </table>
 </body>
 </html>

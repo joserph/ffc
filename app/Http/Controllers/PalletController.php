@@ -10,6 +10,7 @@ use App\PalletItem;
 use App\Farm;
 use App\Client;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Collection as Collection;
 
 class PalletController extends Controller
 {
@@ -56,10 +57,28 @@ class PalletController extends Controller
 
     public function exportPdf()
     {
-        $pallets = Pallet::get();
-        $pdf = PDF::loadView('pallets.pdf', compact('pallets'));
+        //$pallets = Pallet::get();
+        // Codigo
+        $url= $_SERVER["REQUEST_URI"];
+        $div = explode("?", $url);
+        $code = $div[1];
+        // Load
+        $load_code = Load::where('code', '=', $code)->get();
+        $load = $load_code[0]->id;
+
+        $pallet_items = PalletItem::where('id_load', '=', $load)->orderBy('id_farm', 'ASC')->get();
+
+        $clients_all = array();
+        $pallet_items2 = PalletItem::select('id_client')->groupBy('id_client')->get();
+        foreach ($pallet_items2 as $item)
+        {
+            $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
+        }
+        $clients_all = Collection::make($clients_all)->sortBy('name');;
+        //dd($clients_all);
+        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items'));
         //dd($pallets);
-        return $pdf->download('list-pallets.pdf');
+        return $pdf->stream();
     }
 
     /**

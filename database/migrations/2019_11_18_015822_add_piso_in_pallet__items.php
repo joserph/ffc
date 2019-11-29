@@ -16,6 +16,7 @@ class AddPisoInPalletItems extends Migration
         Schema::table('pallet_items', function($table)
 		{
             $table->integer('piso')->nullable();
+            $table->string('farms')->nullable();
 		});
     }
 
@@ -28,7 +29,8 @@ class AddPisoInPalletItems extends Migration
     {
         Schema::table('pallet_items', function($table)
 		{
-		    $table->dropColumn('piso');
+            $table->dropColumn('piso');
+            $table->dropColumn('farms');
 		});
     }
 }
