@@ -9,6 +9,7 @@ use App\Pallet;
 use App\PalletItem;
 use App\Http\Requests\AddPalletItemRequest;
 use App\Load;
+use App\PalletItemsPdf;
 
 class PalletItemController extends Controller
 {
@@ -57,6 +58,23 @@ class PalletItemController extends Controller
         $farm = Farm::select('name')->where('id', '=', $palletitem->id_farm)->first();
         $palletitem->farms = $farm->name;
         $palletitem->save();
+
+        // Crear tabla agrupada
+        $palletitem_pdf = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->first();
+        //dd($palletitem_pdf);
+        if($palletitem_pdf)
+        {
+            $palletitem_pdf->hb += $palletitem->hb;
+            $palletitem_pdf->qb += $palletitem->qb;
+            $palletitem_pdf->eb += $palletitem->eb;
+            $palletitem_pdf->quantity += $palletitem->quantity; 
+            $palletitem_pdf->save();
+        }else{
+            $palletitem_pdf = PalletItemsPdf::create($request->all());
+            $farm = Farm::select('name')->where('id', '=', $palletitem_pdf->id_farm)->first();
+            $palletitem_pdf->farms = $farm->name;
+            $palletitem_pdf->save();
+        }
         
         $pallet = Pallet::where('id', '=', $palletitem->id_pallet)->get();
         $load = Load::where('id', '=', $pallet[0]->id_load)->get();
@@ -165,6 +183,21 @@ class PalletItemController extends Controller
     public function destroy($id)
     {
         $palletitem = PalletItem::find($id);
+        $palletitem_pdf = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->first();
+        if($palletitem_pdf)
+        {
+            $palletitem_pdf->hb -= $palletitem->hb;
+            $palletitem_pdf->qb -= $palletitem->qb;
+            $palletitem_pdf->eb -= $palletitem->eb;
+            $palletitem_pdf->quantity -= $palletitem->quantity;
+            if($palletitem_pdf->quantity == 0)
+            {
+                $palletitem_pdf->delete();
+            }else{
+                $palletitem_pdf->save();
+            }
+        }
+
         $palletitem->delete();
 
         return back()->with('danger', 'Item Eliminado correctamente');

@@ -20,6 +20,10 @@
                 <th>EB</th>
             </tr>
         </thead>
+        @php
+            $idfarm = 0;
+            $total_farm = 0;
+        @endphp
         @foreach($clients_all as $client)
             <thead>
                 <tr class="success">
@@ -29,14 +33,29 @@
             <tbody>
                 @foreach ($pallet_items as $item)
                     @if($item->id_client == $client->id)
-                        <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->counter }}</td>
-                            <td>{{ $item->number }}</td>
-                            <td>{{ $item->quantity }}</td>
-                        </tr>
+                        {{-- Agrupar fincas iguales --}}
+                        
+                        
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>
+                                    @foreach ($farms as $item_farm)
+                                        @if ($item->id_farm == $item_farm->id)
+                                            {{ $item_farm->name }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>{{ $item->quantity }}</td>
+                            </tr>
+                            
+                        @php
+                            $idfarm = $item->id_farm;
+                        @endphp
+                        
                     @endif
+                    
                 @endforeach
+                
             </tbody>
         @endforeach
     </table>

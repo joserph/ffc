@@ -9,6 +9,7 @@ use App\Http\Requests\AddPalletRequest;
 use App\PalletItem;
 use App\Farm;
 use App\Client;
+use App\PalletItemsPdf;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Collection as Collection;
 
@@ -24,10 +25,14 @@ class PalletController extends Controller
         $url= $_SERVER["REQUEST_URI"];
         $div = explode("?", $url);
         $code = $div[1];
-        $pallets = Pallet::orderBy('id', '=', 'DESC')->get();
+        
+        
         
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
+        $pallets = Pallet::where('id_load', '=', $load)->orderBy('id', '=', 'DESC')->get();
+        
+        
         $last_pallet = Pallet::where('id_load', '=', $load)->select('counter')->get()->last();
         
         // Total contenedor
@@ -46,12 +51,12 @@ class PalletController extends Controller
             $counter = 1;
         }
         $number = $code . '-' . $counter;
-        $palletItem = PalletItem::all();
+        $palletItem = PalletItem::where('id_load', '=', $load)->get();
         // Farms
         $farms = Farm::all();
         // Clients
         $clients = Client::all();
-        //dd($load);
+        //dd($pallets);
         return view('pallets.index', compact('pallets','code', 'counter', 'number', 'load', 'palletItem', 'farms', 'clients', 'total_container', 'total_hb', 'total_qb', 'total_eb'));
     }
 
@@ -66,7 +71,7 @@ class PalletController extends Controller
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
 
-        $pallet_items = PalletItem::where('id_load', '=', $load)->orderBy('id_farm', 'ASC')->get();
+        $pallet_items = PalletItemsPdf::where('id_load', '=', $load)->orderBy('id_farm', 'ASC')->get();
 
         $clients_all = array();
         $pallet_items2 = PalletItem::select('id_client')->groupBy('id_client')->get();
@@ -74,10 +79,12 @@ class PalletController extends Controller
         {
             $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
         }
-        $clients_all = Collection::make($clients_all)->sortBy('name');;
+        $clients_all = Collection::make($clients_all)->sortBy('name');
+
+        // Farms
+        $farms = Farm::all();
         //dd($clients_all);
-        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items'));
-        //dd($pallets);
+        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items', 'farms'));
         return $pdf->stream();
     }
 
