@@ -10,28 +10,45 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+        table {
+            width: 100%;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .text-right{
+            text-align: right;
+        }
+        .blanco{
+            color: #fff;
+        }
     </style>
 </head>
 <body>
     <table>
+        @php
+            $quantity = 0;
+        @endphp
         @foreach($clients_all as $client)
+        
             <thead>
                 <tr class="success">
-                    <th>Awb:</th>
+                    <th class="text-center">Awb:</th>
                     <th colspan="6" class="text-center">{{ strtoupper($client->name) }}</th>
                 </tr>
                 <tr>
-                    <th>Exporter</th>
-                    <th>Hawb</th>
-                    <th>PCS</th>
-                    <th>BXS</th>
-                    <th>HB</th>
-                    <th>QB</th>
-                    <th>EB</th>
+                    <th class="text-center">Exporter</th>
+                    <th class="text-center">Hawb</th>
+                    <th class="text-center">PCS</th>
+                    <th class="text-center">BXS</th>
+                    <th class="text-center">HB</th>
+                    <th class="text-center">QB</th>
+                    <th class="text-center">EB</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($pallet_items as $item)
+                    
                     @if($item->id_client == $client->id)
                         <tr>
                             <td>
@@ -41,18 +58,39 @@
                                     @endif
                                 @endforeach
                             </td>
-                            <td>123456</td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>22.50</td>
-                            <td>{{ $item->hb }}</td>
-                            <td>{{ $item->qb }}</td>
-                            <td>{{ $item->eb }}</td>
+                            <td class="text-center">123456</td>
+                            <td class="text-center">{{ $item->quantity }}</td>
+                            <td class="text-center">22.50</td>
+                            <td class="text-center">{{ $item->hb }}</td>
+                            <td class="text-center">{{ $item->qb }}</td>
+                            <td class="text-center">{{ $item->eb }}</td>
                         </tr>
+                        @php
+                            $quantity += $item->quantity;
+                        @endphp
                     @endif
                 @endforeach
-                
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-right">Total:</td>
+                    <td class="text-center">{{ $quantity }}</td>
+                    <td class="text-center">{{ $quantity }}</td>
+                    <td class="text-center">{{ $quantity }}</td>
+                    <td class="text-center">{{ $quantity }}</td>
+                    <td class="text-center">{{ $quantity }}</td>
+                </tr>
+            </tfoot>
+            <tfoot>
+                <tr>
+                    <td colspan="7" class="blanco">-</td>
+                </tr>
+            </tfoot>
+            @php
+                $quantity = 0;
+            @endphp
         @endforeach
+        
     </table>
 </body>
 </html>
