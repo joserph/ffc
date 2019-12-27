@@ -14,11 +14,6 @@
 </head>
 <body>
     <table>
-        
-        @php
-            $idfarm = 0;
-            $total_farm = 0;
-        @endphp
         @foreach($clients_all as $client)
             <thead>
                 <tr class="success">

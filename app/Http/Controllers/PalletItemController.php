@@ -155,6 +155,22 @@ class PalletItemController extends Controller
         $palletitem->farms = $farm->name;
         $palletitem->save();
 
+        // Crear tabla agrupada
+        $palletitem_pdf = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->first();
+        $hb = PalletItem::select('hb')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
+        $qb = PalletItem::select('qb')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
+        $eb = PalletItem::select('eb')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
+        $quantity = PalletItem::select('quantity')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
+        //dd($quantity->sum('quantity'));
+        if($palletitem_pdf)
+        {
+            $palletitem_pdf->hb = $hb->sum('hb');
+            $palletitem_pdf->qb = $qb->sum('qb');
+            $palletitem_pdf->eb = $eb->sum('eb');
+            $palletitem_pdf->quantity = $quantity->sum('quantity'); 
+            $palletitem_pdf->save();
+        }
+
         // Total paleta
         $total_pallet = PalletItem::where('id_pallet', '=', $palletitem->id_pallet)->sum('quantity');
         //dd($total_pallet);

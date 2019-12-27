@@ -26,12 +26,9 @@ class PalletController extends Controller
         $div = explode("?", $url);
         $code = $div[1];
         
-        
-        
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
         $pallets = Pallet::where('id_load', '=', $load)->orderBy('id', '=', 'DESC')->get();
-        
         
         $last_pallet = Pallet::where('id_load', '=', $load)->select('counter')->get()->last();
         
