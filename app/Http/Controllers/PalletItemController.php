@@ -68,11 +68,13 @@ class PalletItemController extends Controller
             $palletitem_pdf->qb += $palletitem->qb;
             $palletitem_pdf->eb += $palletitem->eb;
             $palletitem_pdf->quantity += $palletitem->quantity; 
+            $palletitem_pdf->fulls = ($palletitem_pdf->hb * 0.50) + ($palletitem_pdf->qb * 0.25) + ($palletitem_pdf->eb * 0.125);
             $palletitem_pdf->save();
         }else{
             $palletitem_pdf = PalletItemsPdf::create($request->all());
             $farm = Farm::select('name')->where('id', '=', $palletitem_pdf->id_farm)->first();
             $palletitem_pdf->farms = $farm->name;
+            $palletitem_pdf->fulls = ($palletitem_pdf->hb * 0.50) + ($palletitem_pdf->qb * 0.25) + ($palletitem_pdf->eb * 0.125);
             $palletitem_pdf->save();
         }
         
@@ -168,6 +170,7 @@ class PalletItemController extends Controller
             $palletitem_pdf->qb = $qb->sum('qb');
             $palletitem_pdf->eb = $eb->sum('eb');
             $palletitem_pdf->quantity = $quantity->sum('quantity'); 
+            $palletitem_pdf->fulls = ($palletitem_pdf->hb * 0.50) + ($palletitem_pdf->qb * 0.25) + ($palletitem_pdf->eb * 0.125);
             $palletitem_pdf->save();
         }
 

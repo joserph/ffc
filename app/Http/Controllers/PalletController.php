@@ -10,6 +10,7 @@ use App\PalletItem;
 use App\Farm;
 use App\Client;
 use App\PalletItemsPdf;
+use App\Coordination;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Collection as Collection;
 
@@ -77,11 +78,13 @@ class PalletController extends Controller
             $clients_all[] = Client::where('id', '=', $item->id_client)->orderBy('name', 'ASC')->first();
         }
         $clients_all = Collection::make($clients_all)->sortBy('name');
-
         // Farms
         $farms = Farm::all();
-        //dd($clients_all);
-        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items', 'farms'));
+        // Guia hija de finca por cliente
+        $hawb = Coordination::select('hawb', 'id_load', 'id_client', 'id_farm')->where('id_load', '=', $load)->get();
+
+        //dd($hawb);
+        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items', 'farms', 'hawb'));
         return $pdf->stream();
     }
 
