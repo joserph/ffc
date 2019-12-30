@@ -21,4 +21,9 @@ class Pallet extends Model
     {
         return $this->hasMany('App\PalletItem', 'id_pallet');
     }
+
+    public function setUsdaAttribute($value)
+    {
+        $this->attributes['usda'] = ($value == 'on') ? '1' : '0';
+    }
 }

@@ -40,6 +40,11 @@
             $qb = 0;
             $eb = 0;
             $full = 0;
+            $quantity_total = 0;
+            $hb_total = 0;
+            $qb_total = 0;
+            $eb_total = 0;
+            $full_total = 0;
         @endphp
         @foreach($clients_all as $client)
         
@@ -77,7 +82,7 @@
                                 @endforeach
                             </td>
                             <td class="text-center">{{ $item->quantity }}</td>
-                            <td class="text-center">{{ $item->fulls }}</td>
+                            <td class="text-center">{{ number_format($item->fulls, 2, '.','') }}</td>
                             <td class="text-center">{{ $item->hb }}</td>
                             <td class="text-center">{{ $item->qb }}</td>
                             <td class="text-center">{{ $item->eb }}</td>
@@ -96,7 +101,7 @@
                 <tr class="success">
                     <th colspan="2" class="text-right">Total:</th>
                     <th class="text-center">{{ $quantity }}</th>
-                    <th class="text-center">{{ $full }}</th>
+                    <th class="text-center">{{ number_format($full, 2, '.','') }}</th>
                     <th class="text-center">{{ $hb }}</th>
                     <th class="text-center">{{ $qb }}</th>
                     <th class="text-center">{{ $eb }}</th>
@@ -108,6 +113,13 @@
                 </tr>
             </tfoot>
             @php
+                $quantity_total += $quantity;
+                $hb_total += $hb;
+                $qb_total += $qb;
+                $eb_total += $eb;
+                $full_total += $full;
+            @endphp
+            @php
                 $quantity = 0;
                 $hb = 0;
                 $qb = 0;
@@ -115,7 +127,16 @@
                 $full = 0;
             @endphp
         @endforeach
-        
+        <tfoot>
+            <tr class="success">
+                <th colspan="2" class="text-right">Total Global:</th>
+                <th class="text-center">{{ $quantity_total }}</th>
+                <th class="text-center">{{ number_format($full_total, 2, '.','') }}</th>
+                <th class="text-center">{{ $hb_total }}</th>
+                <th class="text-center">{{ $qb_total }}</th>
+                <th class="text-center">{{ $eb_total }}</th>
+            </tr>
+        </tfoot>
     </table>
 </body>
 </html>

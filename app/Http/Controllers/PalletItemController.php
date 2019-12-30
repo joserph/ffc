@@ -57,6 +57,13 @@ class PalletItemController extends Controller
         $palletitem = PalletItem::create($request->all());
         $farm = Farm::select('name')->where('id', '=', $palletitem->id_farm)->first();
         $palletitem->farms = $farm->name;
+        if($palletitem->piso == null)
+        {
+            //dd($request->piso);
+            $palletitem->piso = 0;
+        }else{
+            $palletitem->piso = 1;
+        }
         $palletitem->save();
 
         // Crear tabla agrupada

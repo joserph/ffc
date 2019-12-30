@@ -107,6 +107,14 @@ class PalletController extends Controller
     public function store(AddPalletRequest $request)
     {
         $pallet = Pallet::create($request->all());
+        if($pallet->usda == '1')
+        {
+            $id_load = Load::select('code')->where('id', '=', $pallet->id_load)->first();
+            $pallet->number = $id_load->code .'-USDA';
+        }else{
+            $pallet->number = $pallet->number;
+        }
+        $pallet->save();
         $load = Load::where('id', '=', $pallet->id_load)->get();
 
         return redirect()->route('pallets.index', $load[0]->code)
