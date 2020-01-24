@@ -29,6 +29,7 @@ class CreatePalletItemsPdfTable extends Migration
             $table->integer('id_user')->unsigned();            
             $table->integer('update_user')->nullable();
             $table->double('fulls', 8, 2)->nullable();
+            $table->string('items_id_pallets')->nullable();
 
             $table->foreign('id_farm')->references('id')->on('farms')->onDelete('cascade');
             $table->foreign('id_client')->references('id')->on('clients')->onDelete('cascade');
