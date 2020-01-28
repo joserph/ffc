@@ -177,7 +177,7 @@ class PalletItemController extends Controller
         $qb = PalletItem::select('qb')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
         $eb = PalletItem::select('eb')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
         $quantity = PalletItem::select('quantity')->where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->where('id_farm', '=', $palletitem->id_farm)->get();
-        //dd($quantity->sum('quantity'));
+        //dd($palletitem_pdf);
         if($palletitem_pdf)
         {
             $palletitem_pdf->hb = $hb->sum('hb');
@@ -193,6 +193,56 @@ class PalletItemController extends Controller
             }
             
             $palletitem_pdf->save();
+        }else{
+            // Cambio de Marcacion
+            $palletitem_pdf2 = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_farm', '=', $palletitem->id_farm)->get();
+            foreach($palletitem_pdf2 as $item_pallet_m)
+            {
+                $pos_m = strpos($item_pallet_m->items_id_pallets, $palletitem->id);
+                if(!$pos_m)
+                {
+                    //dd('SI');
+                    if($palletitem->quantity >= $item_pallet_m->quantity)
+                    {
+                        // Eliminar campo
+                    }else{
+                        $item_pallet_edit = PalletItemsPdf::find($item_pallet_m->id);
+                        $item_pallet_edit->quantity = $item_pallet_m->quantity - $palletitem->quantity;
+                        $item_pallet_edit->hb = $item_pallet_m->hb - $palletitem->hb;
+                        $item_pallet_edit->qb = $item_pallet_m->qb - $palletitem->qb;
+                        $item_pallet_edit->eb = $item_pallet_m->eb - $palletitem->eb;
+                        $item_pallet_edit->save();
+
+                        // Creamos el nuevo item
+                        //dd($palletitem->id_farm);
+                        $palletitem_pdf_new = new PalletItemsPdf;
+                        $palletitem_pdf_new->id_farm = $palletitem->id_farm;
+                        $palletitem_pdf_new->id_client = $palletitem->id_client;
+                        $palletitem_pdf_new->id_pallet = $palletitem->id_pallet;
+                        $palletitem_pdf_new->id_load = $palletitem->id_load;
+                        $palletitem_pdf_new->quantity = $palletitem->quantity;
+                        $palletitem_pdf_new->hb = $palletitem->hb;
+                        $palletitem_pdf_new->qb = $palletitem->qb;
+                        $palletitem_pdf_new->eb = $palletitem->eb;
+                        $palletitem_pdf_new->piso = $palletitem->piso;
+                        $farm = Farm::select('name')->where('id', '=', $palletitem_pdf_new->id_farm)->first();
+                        $palletitem_pdf_new->farms = $farm->name;
+                        $palletitem_pdf_new->id_user = $palletitem->id_user;
+                        $palletitem_pdf_new->update_user = $palletitem->update_user;
+                        $palletitem_pdf_new->fulls = ($palletitem_pdf_new->hb * 0.50) + ($palletitem_pdf_new->qb * 0.25) + ($palletitem_pdf_new->eb * 0.125);
+                        $palletitem_pdf_new->items_id_pallets = $palletitem->id . ',';
+                        $palletitem_pdf_new->save();
+
+
+                    }
+                }
+            }
+
+            // Cambio de Finca
+
+
+            
+            //dd($palletitem_pdf2);
         }
 
         // Total paleta

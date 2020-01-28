@@ -21,6 +21,7 @@
 </div>
 
 <input type="hidden" name="id_pallet" id="id_pallet" value="{{ $id_pallet }}">
+<input type="hidden" name="id_load" id="id_load" value="{{ $palletitems->id_load }}">
 
 <div class="form-group">
     {{ Form::label('hb', 'HB ', ['class' => 'col-sm-2 control-label']) }}
