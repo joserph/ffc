@@ -185,15 +185,9 @@ class PalletItemController extends Controller
             $palletitem_pdf->eb = $eb->sum('eb');
             $palletitem_pdf->quantity = $quantity->sum('quantity'); 
             $palletitem_pdf->fulls = ($palletitem_pdf->hb * 0.50) + ($palletitem_pdf->qb * 0.25) + ($palletitem_pdf->eb * 0.125);
-            $pos = strpos($palletitem_pdf->items_id_pallets, $palletitem->id);
-            //dd($pos);
-            if(!$pos)
-            {
-                $palletitem_pdf->items_id_pallets = $palletitem_pdf->items_id_pallets . $palletitem->id . ',';
-            }
-            
+            $palletitem_pdf->items_id_pallets = $palletitem_pdf->items_id_pallets . $palletitem->id . ',';
             $palletitem_pdf->save();
-        }else{
+
             // Cambio de Marcacion
             $palletitem_pdf2 = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_farm', '=', $palletitem->id_farm)->get();
             foreach($palletitem_pdf2 as $item_pallet_m)
@@ -202,15 +196,42 @@ class PalletItemController extends Controller
                 if(!$pos_m)
                 {
                     //dd('SI');
+                    
                     if($palletitem->quantity >= $item_pallet_m->quantity)
                     {
+                        $palletitem_delete = PalletItemsPdf::find($item_pallet_m->id);
+                        $palletitem_delete->delete();
+                        //dd('Eliminar');
+                        // Eliminar campo
+                    }
+                }
+            }
+        }else{
+            //dd('Entra');
+            // Cambio de Marcacion
+            $palletitem_pdf2 = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_farm', '=', $palletitem->id_farm)->get();
+            foreach($palletitem_pdf2 as $item_pallet_m)
+            {
+                $pos_m = strpos($item_pallet_m->items_id_pallets, $palletitem->id);
+                if(!$pos_m)
+                {
+                    //dd('SI');
+                    
+                    if($palletitem->quantity >= $item_pallet_m->quantity)
+                    {
+                        dd('Eliminar');
                         // Eliminar campo
                     }else{
+                        // Restaos valores
                         $item_pallet_edit = PalletItemsPdf::find($item_pallet_m->id);
                         $item_pallet_edit->quantity = $item_pallet_m->quantity - $palletitem->quantity;
                         $item_pallet_edit->hb = $item_pallet_m->hb - $palletitem->hb;
                         $item_pallet_edit->qb = $item_pallet_m->qb - $palletitem->qb;
                         $item_pallet_edit->eb = $item_pallet_m->eb - $palletitem->eb;
+                        // Quitamos el id
+                        $items_id_pallet = str_replace($palletitem->id . ',', '', $item_pallet_edit->items_id_pallets);
+                        $item_pallet_edit->items_id_pallets = $items_id_pallet;
+                        
                         $item_pallet_edit->save();
 
                         // Creamos el nuevo item
@@ -233,14 +254,56 @@ class PalletItemController extends Controller
                         $palletitem_pdf_new->items_id_pallets = $palletitem->id . ',';
                         $palletitem_pdf_new->save();
 
-
                     }
                 }
             }
 
             // Cambio de Finca
+            $palletitem_pdf3 = PalletItemsPdf::where('id_load', '=', $palletitem->id_load)->where('id_client', '=', $palletitem->id_client)->get();
+            foreach($palletitem_pdf3 as $item_pallet_m3)
+            {
+                $pos_m = strpos($item_pallet_m3->items_id_pallets, $palletitem->id);
+                if(!$pos_m)
+                {
+                    if($palletitem->quantity >= $item_pallet_m3->quantity)
+                    {
+                        dd('Eliminar');
+                        // Eliminar campo
+                    }else{
+                        // Restaos valores
+                        $item_pallet_edit = PalletItemsPdf::find($item_pallet_m3->id);
+                        $item_pallet_edit->quantity = $item_pallet_m3->quantity - $palletitem->quantity;
+                        $item_pallet_edit->hb = $item_pallet_m3->hb - $palletitem->hb;
+                        $item_pallet_edit->qb = $item_pallet_m3->qb - $palletitem->qb;
+                        $item_pallet_edit->eb = $item_pallet_m3->eb - $palletitem->eb;
+                        // Quitamos el id
+                        $items_id_pallet = str_replace($palletitem->id . ',', '', $item_pallet_edit->items_id_pallets);
+                        $item_pallet_edit->items_id_pallets = $items_id_pallet;
+                        
+                        $item_pallet_edit->save();
 
-
+                        // Creamos el nuevo item
+                        //dd($palletitem->id_farm);
+                        $palletitem_pdf_new = new PalletItemsPdf;
+                        $palletitem_pdf_new->id_farm = $palletitem->id_farm;
+                        $palletitem_pdf_new->id_client = $palletitem->id_client;
+                        $palletitem_pdf_new->id_pallet = $palletitem->id_pallet;
+                        $palletitem_pdf_new->id_load = $palletitem->id_load;
+                        $palletitem_pdf_new->quantity = $palletitem->quantity;
+                        $palletitem_pdf_new->hb = $palletitem->hb;
+                        $palletitem_pdf_new->qb = $palletitem->qb;
+                        $palletitem_pdf_new->eb = $palletitem->eb;
+                        $palletitem_pdf_new->piso = $palletitem->piso;
+                        $farm = Farm::select('name')->where('id', '=', $palletitem_pdf_new->id_farm)->first();
+                        $palletitem_pdf_new->farms = $farm->name;
+                        $palletitem_pdf_new->id_user = $palletitem->id_user;
+                        $palletitem_pdf_new->update_user = $palletitem->update_user;
+                        $palletitem_pdf_new->fulls = ($palletitem_pdf_new->hb * 0.50) + ($palletitem_pdf_new->qb * 0.25) + ($palletitem_pdf_new->eb * 0.125);
+                        $palletitem_pdf_new->items_id_pallets = $palletitem->id . ',';
+                        $palletitem_pdf_new->save();
+                    }
+                }
+            }
             
             //dd($palletitem_pdf2);
         }
