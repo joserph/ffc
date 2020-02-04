@@ -30,9 +30,46 @@
             background-color: #4CAF50;
             color: white;
         }
+        .small {
+            font-size: 10px;
+        }
+        .medium {
+            font-size: 20px;
+        }
+        .big {
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
+    <!-- Encabezado -->
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" class="text-center medium">SHIPMENT CONFIRMATION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Date:</td>
+                <td>{{ $load_current->date }}</td>
+                <td>PCS</td>
+                <td>100 manual</td>
+            </tr>
+            <tr>
+                <td>Client:</td>
+                <td>FRESH FLOWER CARGO</td>
+                <td>Carrier:</td>
+                <td>MARITIMO</td>
+            </tr>
+            <tr>
+                <td colspan="2">DOLE:</td>
+                <td colspan="2">{{ $load_current->bl }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End Encabezado -->
+
     <table>
         @php
             $quantity = 0;

@@ -68,6 +68,7 @@ class PalletController extends Controller
         // Load
         $load_code = Load::where('code', '=', $code)->get();
         $load = $load_code[0]->id;
+        $load_current = $load_code[0];
 
         $pallet_items = PalletItemsPdf::where('id_load', '=', $load)->orderBy('id_farm', 'ASC')->get();
 
@@ -83,8 +84,8 @@ class PalletController extends Controller
         // Guia hija de finca por cliente
         $hawb = Coordination::select('hawb', 'id_load', 'id_client', 'id_farm')->where('id_load', '=', $load)->get();
 
-        //dd($hawb);
-        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items', 'farms', 'hawb'));
+        //dd($load_code[0]);
+        $pdf = PDF::loadView('pallets.pdf', compact('pallets', 'clients_all', 'pallet_items', 'farms', 'hawb', 'load_current'));
         return $pdf->stream();
     }
 
