@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <i class="fas fa-handshake"></i> Clientes
                     @can('products.create')
-                        <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevos clientes"><i class="fas fa-plus-circle"></i> Agregar</a>
+                        <a href="{{ route('clients.create') }}" class="btn btn-xs btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevos clientes"><i class="fas fa-plus-circle"></i> Agregar</a>
                     @endcan
                 </div>
 
@@ -37,18 +37,18 @@
                                         <td class="text-center">{{ $item->address }}</td>
                                         <td width="10px">
                                             @can('clients.show')
-                                                <a href="{{ route('clients.show', $item->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles del cliente"><i class="fas fa-eye"></i> Ver</a>
+                                                <a href="{{ route('clients.show', $item->id) }}" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles del cliente"><i class="fas fa-eye"></i> Ver</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('clients.edit')
-                                                <a href="{{ route('clients.edit', $item->id) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles del cliente"><i class="fas fa-edit"></i> Editar</a>
+                                                <a href="{{ route('clients.edit', $item->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles del cliente"><i class="fas fa-edit"></i> Editar</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('clients.destroy')
                                                 {!! Form::open(['route' => ['clients.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar cliente', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar cliente?")']) !!}
+                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar cliente', 'class' => 'btn btn-xs btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar cliente?")']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         </td>

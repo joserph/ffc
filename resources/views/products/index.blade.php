@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     Productos
                     @can('products.create')
-                        <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+                        <a href="{{ route('products.create') }}" class="btn btn-xs btn-primary pull-right"><i class="fas fa-plus-circle"></i> Crear</a>
                     @endcan
                 </div>
 
@@ -28,18 +28,18 @@
                                     <td>{{ $item->name }}</td>
                                     <td width="10px">
                                         @can('products.show')
-                                            <a href="{{ route('products.show', $item->id) }}" class="btn btn-sm btn-default">Ver</a>
+                                            <a href="{{ route('products.show', $item->id) }}" class="btn btn-xs btn-info"><i class="fas fa-eye"></i> Ver</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('products.edit')
-                                            <a href="{{ route('products.edit', $item->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="{{ route('products.edit', $item->id) }}" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                         @endcan
                                     </td>
                                     <td width="10px">
                                         @can('products.destroy')
                                             {!! Form::open(['route' => ['products.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                <button class="btn btn-sm btn-danger">Eliminar</button>
+                                                <button class="btn btn-xs btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                             {!! Form::close() !!}
                                         @endcan
                                     </td>

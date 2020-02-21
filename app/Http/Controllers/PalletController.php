@@ -60,7 +60,7 @@ class PalletController extends Controller
 
     public function exportPdf()
     {
-        //$pallets = Pallet::get();
+        $pallets = Pallet::get();
         // Codigo
         $url= $_SERVER["REQUEST_URI"];
         $div = explode("?", $url);

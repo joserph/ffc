@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <i class="fas fa-spa"></i> Fincas
                     @can('products.create')
-                        <a href="{{ route('farms.create') }}" class="btn btn-sm btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevas fincas"><i class="fas fa-plus-circle"></i> Agregar</a>
+                        <a href="{{ route('farms.create') }}" class="btn btn-xs btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Agregar nuevas fincas"><i class="fas fa-plus-circle"></i> Agregar</a>
                     @endcan
                 </div>
 
@@ -37,18 +37,18 @@
                                         <td class="text-center">{{ $item->address }}</td>
                                         <td width="10px">
                                             @can('farms.show')
-                                                <a href="{{ route('farms.show', $item->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles de la finca"><i class="fas fa-eye"></i> Ver</a>
+                                                <a href="{{ route('farms.show', $item->id) }}" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="Ver detalles de la finca"><i class="fas fa-eye"></i> Ver</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('farms.edit')
-                                                <a href="{{ route('farms.edit', $item->id) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles de la finca"><i class="fas fa-edit"></i> Editar</a>
+                                                <a href="{{ route('farms.edit', $item->id) }}" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Editar detalles de la finca"><i class="fas fa-edit"></i> Editar</a>
                                             @endcan
                                         </td>
                                         <td width="10px">
                                             @can('farms.destroy')
                                                 {!! Form::open(['route' => ['farms.destroy', $item->id], 'method' => 'DELETE']) !!}
-                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
+                                                    {!! Form::button('<i class="fas fa-trash-alt"></i> ' . 'Eliminar', ['type' => 'submit', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Eliminar finca', 'class' => 'btn btn-xs btn-danger', 'onclick' => 'return confirm("¿Seguro de eliminar finca?")']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         </td>
